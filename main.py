@@ -3,13 +3,21 @@ from inputmanager import *
 from gamemanager import *
 from player import *
 from background import *
+<<<<<<< HEAD
 from contraints import *
+=======
+from constraints import *
+>>>>>>> 298b073e59de0a6bd304603d7b359065aa35d05e
 
 def init_pygame():
     pygame.init()
     screen = pygame.display.set_mode((400, 600))
+<<<<<<< HEAD
 
     pygame.display.set_caption("Hung Game")
+=======
+    pygame.display.set_caption("Hưng game")
+>>>>>>> 298b073e59de0a6bd304603d7b359065aa35d05e
     return screen
 
 def run():
@@ -26,9 +34,7 @@ clock = pygame.time.Clock()
 game_manager.add(Background())
 player = Player()
 game_manager.add(player)
-player.x = 200
-player.y = 300
-player.Constrainst= Constrainst(0,400,0,600)
+player.constraints = Constraints(0,400,0,600)
 loop = True
 
 while loop:

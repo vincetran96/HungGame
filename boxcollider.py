@@ -7,7 +7,6 @@ class BoxCollider:
         self.width = width
         self.height = height
 
-
     def Print(self):
         print(self.position.x, self.position.y, self.width, self.height)
 
