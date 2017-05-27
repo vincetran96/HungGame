@@ -8,7 +8,7 @@ class BoxCollider:
         self.height = height
 
 
-    def print(self):
+    def Print(self):
         print(self.position.x, self.position.y, self.width, self.height)
 
     def check_collide(self, other):

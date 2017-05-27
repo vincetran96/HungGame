@@ -1,13 +1,14 @@
-<<<<<<< HEAD
 import pygame
 from inputmanager import *
 from gamemanager import *
-
+from player import *
+from background import *
+from Constrainst import *
 
 def init_pygame():
     pygame.init()
-    screen = pygame.display.set_mode((600, 800))
-    pygame.display.set_caption("HungGame")
+    screen = pygame.display.set_mode((400, 600)) # 600, 800 vs 768, 1024
+    pygame.display.set_caption("1945 Strikers - Remade by TechKidsers")
     return screen
 
 def run():
@@ -23,8 +24,10 @@ clock = pygame.time.Clock()
 
 game_manager.add(Background())
 player = Player()
-player.constraints = Constraints(0, 600, 0, 800)
 game_manager.add(player)
+player.x = 200
+player.y = 300
+player.Constrainst= Constrainst(0,400,0,600)
 loop = True
 
 while loop:
@@ -48,6 +51,3 @@ while loop:
     clock.tick(60)
 
 pygame.quit()
-=======
-import pygame
->>>>>>> 811e5835b73bf12cc388ff86ef36073c47ac89a7

@@ -3,7 +3,7 @@ import pygame
 class Player:
     def __init__(self):
         self.position = Point()
-        self.renderer = SpriteRenderer(pygame.image.load(""))
+        self.renderer = SpriteRenderer(pygame.image.load("resources/player.png"))
         self.constraints = None
         self.active = True
         self.position.y = 0
