@@ -8,6 +8,6 @@ class Background:
         self.position = Point()
         self.renderer = SpriteRenderer(pygame.image.load("resources/background.png"))
 
-
+background = Background()
     def run(self):
         pass

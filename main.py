@@ -3,12 +3,13 @@ from inputmanager import *
 from gamemanager import *
 from player import *
 from background import *
-from Constrainst import *
+from contraints import *
 
 def init_pygame():
     pygame.init()
-    screen = pygame.display.set_mode((400, 600)) # 600, 800 vs 768, 1024
-    pygame.display.set_caption("1945 Strikers - Remade by TechKidsers")
+    screen = pygame.display.set_mode((400, 600))
+
+    pygame.display.set_caption("Hung Game")
     return screen
 
 def run():
