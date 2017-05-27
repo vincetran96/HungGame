@@ -5,6 +5,7 @@ from player import *
 from background import *
 from constraints import *
 from edible import *
+from nonedible import *
 import random
 from physics import *
 
@@ -30,7 +31,7 @@ clock = pygame.time.Clock()
 game_manager.add(Background())
 player = Player()
 game_manager.add(player)
-player.constraints = Constraints(0,400,0,800)
+player.constraints = Constraints(0,800,0,600)
 
 loop = True
 
@@ -46,9 +47,10 @@ while loop:
     input_manager.run(events)
     i -= 1
     if i == 0:
-        eat = Edible()
+        eat = NonEdible()
         eat.position.x = random.randrange(50, 750)
-        eat.direction_x = random.randint(-1,1)
+        eat.direction_x = random.choice((-5,0,5))
+        print (eat.direction_x)
         game_manager.add(eat)
         physics.add_fruits(eat)
         i = 30
