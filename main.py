@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import pygame
 from inputmanager import *
 from gamemanager import *
@@ -47,3 +48,6 @@ while loop:
     clock.tick(60)
 
 pygame.quit()
+=======
+import pygame
+>>>>>>> 811e5835b73bf12cc388ff86ef36073c47ac89a7
