@@ -4,9 +4,9 @@ from gamemanager import *
 from player import *
 from background import *
 from constraints import *
-from physics import *
-from fruit import *
+from edible import *
 import random
+from physics import *
 
 def init_pygame():
     pygame.init()
@@ -17,6 +17,7 @@ def init_pygame():
 
 def run():
     game_manager.run()
+    physics.check_hit_wall()
 
 def draw(screen):
     screen.fill((0, 0, 0))
@@ -33,30 +34,25 @@ player.constraints = Constraints(0,400,0,600)
 
 loop = True
 
-i = 0
+i = 10
 while loop:
     events = pygame.event.get()
+
     # Handle QUIT event
     for event in events:
         if event.type == pygame.QUIT:
             loop = False
+
     input_manager.run(events)
-
-    edible = Edible()
-    i += 1
-    if i == 80:
-        # edible.position.x = random.randrange(50, 350)
-        # edible.direction_x = random.randrange(-1,1)
-        # edible.direction_y = random.choice((3,5))
-        edible.position.x = 200
-        edible.direction_x = 1
-        edible.direction_y = 1
-        game_manager.add(edible)
-        physics.wall_bouncing(edible)
-        # i = 0
-        if edible.position.x == 400:
-            edible.direction_x = edible.direction_x * (-1)
-
+    i -= 1
+    if i == 0:
+        eat = Edible()
+        eat.position.x = random.randrange(50, 350)
+        eat.direction_x = random.randint(-1,1)
+        eat.direction_y = random.choice((3,5))
+        game_manager.add(eat)
+        physics.add_fruits(eat)
+        i = 10
 
     ## Update logic
     run()

@@ -9,8 +9,8 @@ class Background:
         self.active = True
         self.position.x += self.renderer.width / 2
         self.position.y += self.renderer.height / 2
-
+        
     def run(self):
         pass
-
+    
 background = Background()
