@@ -1,7 +1,10 @@
 import pygame
 from point import *
-from  renderer import *
+from renderer import *
 from inputmanager import *
+from edible import *
+from physics import *
+from  boxcollider import *
 
 class Player:
     def __init__(self):
@@ -11,6 +14,8 @@ class Player:
         self.active = True
         self.position.x = 200
         self.position.y = 500
+        self.box_collider = BoxCollider(self.position, 100,100 )
+
 
     def run(self):
         self.move()
@@ -27,3 +32,4 @@ class Player:
 
         if self.constraints is not None:
             self.constraints.make(self.position)
+

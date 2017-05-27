@@ -10,7 +10,7 @@ from physics import *
 
 def init_pygame():
     pygame.init()
-    screen = pygame.display.set_mode((800, 600))
+    screen = pygame.display.set_mode((400, 600))
     pygame.display.set_caption("Hung Game")
 
     return screen
@@ -32,9 +32,10 @@ player = Player()
 game_manager.add(player)
 player.constraints = Constraints(0,400,0,800)
 
+
 loop = True
 
-i = 30
+i = 10
 while loop:
     events = pygame.event.get()
 
@@ -51,7 +52,7 @@ while loop:
         eat.direction_x = random.randint(-1,1)
         game_manager.add(eat)
         physics.add_fruits(eat)
-        i = 30
+        i = 10
 
     ## Update logic
     run()
