@@ -24,12 +24,12 @@ class Player:
             self.position.add_up(-5, 0)
             self.renderer.flipped = True
             self.renderer.staterender.state = "move"
-        elif input_manager.down_pressed:
-            self.position.add_up(0, 5)
-            self.renderer.staterender.state = "move"
-        elif input_manager.up_pressed:
-            self.position.add_up(0, -5)
-            self.renderer.staterender.state = "move"
+        # elif input_manager.down_pressed:
+        #     self.position.add_up(0, 5)
+        #     self.renderer.staterender.state = "move"
+        # elif input_manager.up_pressed:
+        #     self.position.add_up(0, -5)
+        #     self.renderer.staterender.state = "move"
         else:
             self.renderer.staterender.state = "normal"
 

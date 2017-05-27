@@ -45,15 +45,15 @@ while loop:
             loop = False
 
     input_manager.run(events)
-    # i -= 1
-    # if i == 0:
-    #     eat = NonEdible()
-    #     eat.position.x = random.randrange(50, 750)
-    #     #eat.direction_x = random.choice((-5,0,5))
-    #     #print (eat.direction_x)
-    #     game_manager.add(eat)
-    #     physics.add_fruits(eat)
-    #     i = 30
+    i -= 1
+    if i == 0:
+        eat = NonEdible()
+        eat.position.x = random.randrange(50, 750)
+        #eat.direction_x = random.choice((-5,0,5))
+        #print (eat.direction_x)
+        game_manager.add(eat)
+        physics.add_fruits(eat)
+        i = 30
 
     ## Update logic
     run()

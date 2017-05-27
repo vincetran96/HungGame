@@ -5,13 +5,15 @@ from gamemanager import *
 from physics import *
 from constraints import *
 from boxcollider import *
+import random
 
 class NonEdible:
     def __init__(self):
         self.active = True
         self.position = Point()
-        self.image_path = [ "resources/non_edible/non_edible_{0}.png".format(i) for i in range(1, 4) ]
-        self.renderer = Animation(self.image_path)
+        #self.image_path = [ "resources/non_edible/non_edible_{0}.png".format(i) for i in range(1, 4) ]
+        self.renderer = InfiniAnimation("resources/non_edible/")
+        self.renderer.staterender.state = "move"
         self.box_collider = BoxCollider(self.position, self.renderer.width, self.renderer.height)
         self.constraints = None
         self.direction_x = random.choice((-5,0,5))

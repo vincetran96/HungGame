@@ -3,7 +3,6 @@ import pygame
 
 class StateRender:
 	def __init__(self, path):
-		#path = resources/player/
 		self.path = path
 		self.state = "normal"
 		self.state_list = ["normal", "eat", "move"]
@@ -16,5 +15,7 @@ class StateRender:
 				pass
 		self.image_dict = image_dict
 
-a = StateRender("resources/player/")
-print (a.image_dict["normal"])
+
+a = StateRender("resources/non_edible/")
+a.state = "move"
+print (a.image_dict[a.state])

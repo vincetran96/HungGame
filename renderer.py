@@ -25,11 +25,10 @@ def loadSpriteRenderer(path):
 class InfiniAnimation:
     def __init__(self, path):
         self.staterender = staterender.StateRender(path)
-        self.width = self.staterender.image_dict["normal"][0].get_width()
-        self.height = self.staterender.image_dict["normal"][0].get_height()
+        self.width = self.staterender.image_dict[self.staterender.state][0].get_width()
+        self.height = self.staterender.image_dict[self.staterender.state][0].get_height()
         self.flipped = False
         self.image_index = 0
-        self.has_ended = False
         self.counter = 0
         self.last_state = None
         
@@ -54,7 +53,6 @@ class InfiniAnimation:
         self.counter += 1
         if self.counter == 10:
             self.counter = 0
-            self.image_index = (self.image_index +1) % (max_frames + 1)        
-            # if self.image_index == max_frames:
-            #     self.has_ended = True
+            self.image_index = (self.image_index +1) % (max_frames + 1)
+
         self.last_state = current_state
