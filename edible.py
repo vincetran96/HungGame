@@ -9,3 +9,4 @@ class Edible:
 	def __init__(self):
 		self.active = True
 		self.position = Point()
+		self.renderer = loadSpriteRenderer("resources...")
