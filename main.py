@@ -10,7 +10,8 @@ import random
 def init_pygame():
     pygame.init()
     screen = pygame.display.set_mode((400, 600))
-    pygame.display.set_caption("Hưng game")
+    pygame.display.set_caption("Hung Game")
+
     return screen
 
 def run():
