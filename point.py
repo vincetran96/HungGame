@@ -7,7 +7,7 @@ class Point:
         self.x += dx
         self.y += dy
 
-    def print(self):
+    def Print(self):
         print("{0}, {1}".format(self.x, self.y))
 
     def add(self, dx, dy):

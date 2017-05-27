@@ -7,6 +7,7 @@ from constraints import *
 from edible import *
 import random
 from physics import *
+from fruit import *
 
 def init_pygame():
     pygame.init()
