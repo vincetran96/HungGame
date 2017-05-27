@@ -1,13 +1,16 @@
 import pygame
+from point import *
+from  renderer import *
+from inputmanager import *
 
 class Player:
     def __init__(self):
         self.position = Point()
-        self.renderer = SpriteRenderer(pygame.image.load(""))
+        self.renderer = SpriteRenderer(pygame.image.load("resources/player.png"))
         self.constraints = None
         self.active = True
-        self.position.y = 0
-        self.position.x = 0
+        self.position.x = 200
+        self.position.y = 500
 
     def run(self):
         self.move()

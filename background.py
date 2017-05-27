@@ -1,11 +1,14 @@
 import pygame
-from renderer import *
 from point import *
+from renderer import *
 
 class Background:
-	def __init__(self):
-		self.position = Point()
-		self.renderer = loadSpriteRenderer("resources/...") 	#THIS NEEDS COMPLETION
+    def __init__(self):
+        self.position = Point()
+        self.renderer = SpriteRenderer(pygame.image.load("resources/background.png"))
+        self.active = True
+        self.position.x += self.renderer.width / 2
+        self.position.y += self.renderer.height / 2
 
-	def run(self):
-		pass
+    def run(self):
+        pass
