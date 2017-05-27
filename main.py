@@ -4,6 +4,8 @@ from gamemanager import *
 from player import *
 from background import *
 from constraints import *
+from edible import *
+import random
 
 def init_pygame():
     pygame.init()
@@ -26,8 +28,10 @@ game_manager.add(Background())
 player = Player()
 game_manager.add(player)
 player.constraints = Constraints(0,400,0,600)
+
 loop = True
 
+i = 120
 while loop:
     events = pygame.event.get()
 
@@ -37,6 +41,14 @@ while loop:
             loop = False
 
     input_manager.run(events)
+    i -= 1
+    if i == 0:
+        eat = Edible()
+        eat.position.x = random.randrange(50, 350)
+        eat.direction_x = random.randrange(-1,1)
+        eat.direction_y = random.choice((3,5))
+        game_manager.add(eat)
+        i = 120
 
     ## Update logic
     run()
