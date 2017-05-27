@@ -25,7 +25,7 @@ clock = pygame.time.Clock()
 game_manager.add(Background())
 player = Player()
 game_manager.add(player)
-player.Constraints = Constraints(0,400,0,600)
+player.constraints = Constraints(0,400,0,600)
 loop = True
 
 while loop:
