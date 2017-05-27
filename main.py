@@ -4,7 +4,8 @@ from gamemanager import *
 from player import *
 from background import *
 from constraints import *
-from edible import *
+from physics import *
+from fruit import *
 import random
 
 def init_pygame():
@@ -32,24 +33,30 @@ player.constraints = Constraints(0,400,0,600)
 
 loop = True
 
-i = 120
+i = 0
 while loop:
     events = pygame.event.get()
-
     # Handle QUIT event
     for event in events:
         if event.type == pygame.QUIT:
             loop = False
-
     input_manager.run(events)
-    i -= 1
-    if i == 0:
-        eat = Edible()
-        eat.position.x = random.randrange(50, 350)
-        eat.direction_x = random.randrange(-1,1)
-        eat.direction_y = random.choice((3,5))
-        game_manager.add(eat)
-        i = 120
+
+    edible = Edible()
+    i += 1
+    if i == 80:
+        # edible.position.x = random.randrange(50, 350)
+        # edible.direction_x = random.randrange(-1,1)
+        # edible.direction_y = random.choice((3,5))
+        edible.position.x = 200
+        edible.direction_x = 1
+        edible.direction_y = 1
+        game_manager.add(edible)
+        physics.wall_bouncing(edible)
+        # i = 0
+        if edible.position.x == 400:
+            edible.direction_x = edible.direction_x * (-1)
+
 
     ## Update logic
     run()
