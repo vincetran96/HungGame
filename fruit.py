@@ -8,10 +8,9 @@ from boxcollider import *
 import math
 import random
 
-class Fruit:
+class Edible:
 	def __init__(self):
 		self.active = True
-		self.edible = True
 		self.position = Point()
 		self.renderer = loadSpriteRenderer("resources/edible.png")
 		self.box_collider = BoxCollider(self.position, self.renderer.width, self.renderer.height)
