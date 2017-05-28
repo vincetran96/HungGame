@@ -20,7 +20,6 @@ class Physics:
     def check_hit_wall(self):
         for fruit in self.fruits:
             if fruit.position.x <= 0 or fruit.position.x >= 800:
-                print ("VA CHAM")
-                fruit.direction_x = fruit.direction_x * -1
+                fruit.direction_x = fruit.direction_x * -1            
 
 physics = Physics()
