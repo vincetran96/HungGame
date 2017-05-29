@@ -1,10 +1,9 @@
-import pygame
 from point import *
-from  renderer import *
+from renderer import *
 from sfx_mixer import *
 from inputmanager import *
 from object_state import ObjectState
-from staterender import StateRender
+
 
 class Player:
     def __init__(self):

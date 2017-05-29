@@ -8,8 +8,7 @@ from edible import *
 from nonedible import *
 import random
 from physics import *
-from sfx_mixer import *
-from fruit import *
+
 
 def init_pygame():
     pygame.init()

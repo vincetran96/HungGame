@@ -1,5 +1,5 @@
-import pygame
 import statesfxmixer
+
 
 class SFXMixer:
     def __init__(self, path, state_mngr):
@@ -7,5 +7,3 @@ class SFXMixer:
 
     def mix(self):
         self.statemixer.mix_state()
-
-#sound_manager = SoundManager()
