@@ -9,7 +9,6 @@ from nonedible import *
 import random
 from physics import *
 from sfx_mixer import *
-from fruit import *
 
 def init_pygame():
     pygame.init()
@@ -21,6 +20,7 @@ def init_pygame():
 def run():
     game_manager.run()
     physics.check_hit_wall()
+    physics.check_hit_ground()
     # sound_manager.play_sounds()
 
 def draw(screen):
