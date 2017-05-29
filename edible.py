@@ -17,7 +17,7 @@ class Edible:
         self.direction_x = 0
         self.direction_y = 5
         self.box_collider = BoxCollider(self.position, 32, 32)
-
+        self.ground_hit = 0
 
     def run(self):
         self.position.add_up(self.direction_x, self.direction_y)

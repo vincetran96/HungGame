@@ -20,6 +20,7 @@ class NonEdible:
         self.constraints = None
         self.direction_x = random.choice((-5,0,5))
         self.direction_y = 5
+        self.ground_hit = 0
 
     def run(self):
         self.position.add_up(self.direction_x, self.direction_y)

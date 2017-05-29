@@ -8,7 +8,11 @@ from edible import *
 from nonedible import *
 import random
 from physics import *
+<<<<<<< HEAD
+from sfx_mixer import *
+=======
 
+>>>>>>> cca3d32b40a44d1ef4dd4bcb305214c3607efd17
 
 def init_pygame():
     pygame.init()
@@ -20,6 +24,7 @@ def init_pygame():
 def run():
     game_manager.run()
     physics.check_hit_wall()
+    physics.check_hit_ground()
     # sound_manager.play_sounds()
 
 def draw(screen):
