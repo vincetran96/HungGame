@@ -6,13 +6,15 @@ from physics import *
 from constraints import *
 from boxcollider import *
 import random
+from object_state import ObjectState
 
 class NonEdible:
     def __init__(self):
         self.active = True
         self.position = Point()
-        self.renderer = InfiniAnimation("resources/non_edible/")
-        self.renderer.staterender.state = "move"
+        self.state_mngr = ObjectState("non_edible")
+        self.state_mngr.state = "move"
+        self.renderer = InfiniAnimation("resources/non_edible/", self.state_mngr)
         self.box_collider = BoxCollider(self.position, self.renderer.width, self.renderer.height)
         self.constraints = None
         self.direction_x = random.choice((-5,0,5))
@@ -24,7 +26,7 @@ class NonEdible:
         if self.position.y >= 600:
             self.active = False
         
-        self.renderer.flipped = (self.direction_x < 0)
+        self.renderer.staterender.flipped = (self.direction_x < 0)
 
         target = physics.check_contact(self.box_collider)
         if target is not None and type(target) is Player:

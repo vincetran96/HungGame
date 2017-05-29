@@ -8,6 +8,7 @@ from edible import *
 from nonedible import *
 import random
 from physics import *
+from sfx_mixer import *
 
 def init_pygame():
     pygame.init()
@@ -19,6 +20,7 @@ def init_pygame():
 def run():
     game_manager.run()
     physics.check_hit_wall()
+    #sound_manager.play_sounds()
 
 def draw(screen):
     screen.fill((0, 0, 0))
@@ -32,6 +34,9 @@ game_manager.add(Background())
 player = Player()
 game_manager.add(player)
 player.constraints = Constraints(0,800,0,600)
+
+test_sound = pygame.mixer.Sound("resources/player/sounds/tudu.wav")
+#sound_manager.add(test_sound)
 
 loop = True
 
@@ -49,8 +54,6 @@ while loop:
     if i == 0:
         eat = NonEdible()
         eat.position.x = random.randrange(50, 750)
-        #eat.direction_x = random.choice((-5,0,5))
-        #print (eat.direction_x)
         game_manager.add(eat)
         physics.add_fruits(eat)
         i = 30
