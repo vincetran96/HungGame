@@ -20,12 +20,14 @@ def init_pygame():
 def run():
     game_manager.run()
     physics.check_hit_wall()
-    #sound_manager.play_sounds()
+    # sound_manager.play_sounds()
 
 def draw(screen):
     screen.fill((0, 0, 0))
-
     game_manager.draw(screen)
+
+def mix():
+    game_manager.mix()
 
 screen = init_pygame()
 clock = pygame.time.Clock()
@@ -35,7 +37,7 @@ player = Player()
 game_manager.add(player)
 player.constraints = Constraints(0,800,0,600)
 
-test_sound = pygame.mixer.Sound("resources/player/sounds/tudu.wav")
+#test_sound = pygame.mixer.Sound("resources/player/sounds/")
 #sound_manager.add(test_sound)
 
 loop = True
@@ -63,6 +65,9 @@ while loop:
 
     ## update graphics
     draw(screen)
+
+    ## play sfx
+    mix()
 
     ## delay by frame rate
     pygame.display.flip()

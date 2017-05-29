@@ -15,6 +15,7 @@ class NonEdible:
         self.state_mngr = ObjectState("non_edible")
         self.state_mngr.state = "move"
         self.renderer = InfiniAnimation("resources/non_edible/", self.state_mngr)
+        self.sfx_mixer = None
         self.box_collider = BoxCollider(self.position, self.renderer.width, self.renderer.height)
         self.constraints = None
         self.direction_x = random.choice((-5,0,5))
