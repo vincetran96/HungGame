@@ -23,8 +23,10 @@ class Player:
     def move(self):
         if input_manager.right_pressed:
             self.position.add_up(5, 0)
+            self.renderer.flipped = False
         if input_manager.left_pressed:
             self.position.add_up(-5, 0)
+            self.renderer.flipped = True
         if input_manager.down_pressed:
             self.position.add_up(0, 5)
         if input_manager.up_pressed:

@@ -10,12 +10,22 @@ class NonEdible:
     def __init__(self):
         self.active = True
         self.position = Point()
-        self.renderer = loadSpriteRenderer("resources...")
+        self.image_path = [ "resources/non_edible/non_edible_{0}.png".format(i) for i in range(1, 4) ]
+        self.renderer = loadAnimation(self.image_path)
         self.box_collider = BoxCollider(self.position, self.renderer.width, self.renderer.height)
         self.constraints = None
+        self.direction_x = 0
+        self.direction_y = 5
 
     def run(self):
-        self.position.add_up(0, 10)
+        self.position.add_up(self.direction_x, self.direction_y)
+        if self.position.y >= 600:
+            self.active = False
         target = physics.check_contact(self.box_collider)
         if target is not None and type(target) is Player:
             self.active = False
+        self.renderer.flipped = (self.direction_x < 0)
+        # if self.direction_x < 0:
+        #     self.renderer.flipped = True
+        # elif self.direction_x >= 0:
+        #     self.renderer.flipped = False
