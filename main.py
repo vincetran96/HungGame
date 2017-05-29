@@ -9,7 +9,7 @@ from nonedible import *
 import random
 from physics import *
 from sfx_mixer import *
-from fruit import *
+
 
 def init_pygame():
     pygame.init()
@@ -17,6 +17,7 @@ def init_pygame():
     pygame.display.set_caption("Hung Game")
 
     return screen
+
 
 def run():
     game_manager.run()
@@ -41,9 +42,14 @@ player.constraints = Constraints(0,800,0,600)
 #test_sound = pygame.mixer.Sound("resources/player/sounds/")
 #sound_manager.add(test_sound)
 
+
 loop = True
 
 i = 30
+
+pygame.mixer.music.load('resources/music.mp3')
+pygame.mixer.music.play(-1)
+
 while loop:
     events = pygame.event.get()
 
@@ -73,5 +79,6 @@ while loop:
     ## delay by frame rate
     pygame.display.flip()
     clock.tick(60)
+
 
 pygame.quit()
