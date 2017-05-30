@@ -7,6 +7,7 @@ from constraints import *
 from boxcollider import *
 import random
 from object_state import ObjectState
+from player import Player
 
 class NonEdible:
     def __init__(self):
@@ -20,6 +21,7 @@ class NonEdible:
         self.constraints = None
         self.direction_x = random.choice((-5,0,5))
         self.direction_y = 5
+        self.ground_hit = 0
 
     def run(self):
         self.position.add_up(self.direction_x, self.direction_y)

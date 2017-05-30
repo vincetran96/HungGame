@@ -15,6 +15,7 @@ class StateSFXMixer:
 
         self.counter = 0
 
+
     def mix_state(self):
         self.counter += 1
         if self.counter == 5:

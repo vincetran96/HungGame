@@ -9,9 +9,13 @@ from nonedible import *
 import random
 from physics import *
 <<<<<<< HEAD
+<<<<<<< HEAD
 from sfx_mixer import *
 =======
 >>>>>>> cca3d32b40a44d1ef4dd4bcb305214c3607efd17
+=======
+from sfx_mixer import *
+>>>>>>> 1a405df0adcd983fc8abaabf25b2e7a94f13e984
 
 
 def init_pygame():
@@ -25,6 +29,7 @@ def init_pygame():
 def run():
     game_manager.run()
     physics.check_hit_wall()
+    physics.check_hit_ground()
     # sound_manager.play_sounds()
 
 def draw(screen):
@@ -32,7 +37,8 @@ def draw(screen):
     game_manager.draw(screen)
 
 def mix():
-    game_manager.mix()
+    #game_manager.mix()
+    pass
 
 screen = init_pygame()
 clock = pygame.time.Clock()
