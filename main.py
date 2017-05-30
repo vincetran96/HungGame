@@ -29,7 +29,8 @@ def draw(screen):
     game_manager.draw(screen)
 
 def mix():
-    game_manager.mix()
+    #game_manager.mix()
+    pass
 
 screen = init_pygame()
 clock = pygame.time.Clock()

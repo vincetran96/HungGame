@@ -7,6 +7,7 @@ from constraints import *
 from boxcollider import *
 import random
 from object_state import ObjectState
+from player import Player
 
 class NonEdible:
     def __init__(self):
