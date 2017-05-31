@@ -3,21 +3,27 @@ from renderer import *
 from sfx_mixer import *
 from inputmanager import *
 from object_state import ObjectState
-
+from nonedible import *
 
 class Player:
     def __init__(self):
         self.position = Point()
         self.state_mngr = ObjectState("player")
         self.renderer = InfiniAnimation("resources/player/", self.state_mngr)
-        #self.sfx_mixer = SFXMixer("resources/player/", self.state_mngr)
+        # self.sfx_mixer = SFXMixer("resources/player/", self.state_mngr)
         self.constraints = None
         self.active = True
         self.position.x = 200
         self.position.y = 500
+        self.box_collider =BoxCollider(self.position, 90, 10)
 
     def run(self):
         self.move()
+
+        something = physics.check_contact(self.box_collider)
+        if something is not None and type(something) is NonEdible:
+            something.active = False
+            print ("eaten NonEdible")
 
     def move(self):
         self.rightleft()

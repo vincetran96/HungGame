@@ -26,12 +26,12 @@ class Physics:
         for fruit in self.fruits:
             if fruit.ground_hit == 0 and fruit.position.y >= 530 :
                 fruit.direction_y = fruit.direction_y * -0.7
-                fruit.direction_x = fruit.direction_x * 0.8
+                fruit.direction_x = fruit.direction_x
                 fruit.ground_hit += 1
 
             if fruit.ground_hit == 1 and fruit.position.y <= 480:
                 fruit.direction_y = fruit.direction_y * -0.7
-                fruit.direction_x = fruit.direction_x * 0.8
+                fruit.direction_x = fruit.direction_x
                 fruit.ground_hit += 1
 
             if fruit.ground_hit == 2 and fruit.position.y >= 530:

@@ -9,10 +9,6 @@ from nonedible import *
 import random
 from physics import *
 from sfx_mixer import *
-from health_bar import *
-from point import *
-from sfx_mixer import *
-
 
 def init_pygame():
     pygame.init()
@@ -21,20 +17,18 @@ def init_pygame():
 
     return screen
 
-
 def run():
     game_manager.run()
     physics.check_hit_wall()
     physics.check_hit_ground()
-    health_bar.run()
+    # sound_manager.play_sounds()
 
 def draw(screen):
     screen.fill((0, 0, 0))
     game_manager.draw(screen)
-    health_bar.draw(screen)
 
 def mix():
-    #game_manager.mix()
+    # game_manager.mix()
     pass
 
 screen = init_pygame()
@@ -45,22 +39,12 @@ player = Player()
 game_manager.add(player)
 player.constraints = Constraints(0,800,0,600)
 
-health_bar.position.set_pos(330, 100)
-health_bar.hp = 800
-#game_manager.add(health_bar)
-
+#test_sound = pygame.mixer.Sound("resources/player/sounds/")
+#sound_manager.add(test_sound)
 
 loop = True
-# eat = NonEdible()
-# eat.position.x = random.randrange(50, 750)
-# game_manager.add(eat)
-# physics.add_fruits(eat)
 
 i = 30
-
-pygame.mixer.music.load('resources/music.mp3')
-pygame.mixer.music.play(-1)
-
 while loop:
     events = pygame.event.get()
 
@@ -77,7 +61,6 @@ while loop:
         game_manager.add(eat)
         physics.add_fruits(eat)
         i = 30
-        health_bar.hp -= 50
 
     ## Update logic
     run()
@@ -91,6 +74,5 @@ while loop:
     ## delay by frame rate
     pygame.display.flip()
     clock.tick(60)
-
 
 pygame.quit()
