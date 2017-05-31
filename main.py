@@ -11,6 +11,7 @@ from physics import *
 from sfx_mixer import *
 from health_bar import *
 from point import *
+from sfx_mixer import *
 
 
 def init_pygame():
@@ -19,6 +20,7 @@ def init_pygame():
     pygame.display.set_caption("Hung Game")
 
     return screen
+
 
 def run():
     game_manager.run()
@@ -47,6 +49,7 @@ health_bar.position.set_pos(330, 100)
 health_bar.hp = 800
 #game_manager.add(health_bar)
 
+
 loop = True
 # eat = NonEdible()
 # eat.position.x = random.randrange(50, 750)
@@ -54,6 +57,10 @@ loop = True
 # physics.add_fruits(eat)
 
 i = 30
+
+pygame.mixer.music.load('resources/music.mp3')
+pygame.mixer.music.play(-1)
+
 while loop:
     events = pygame.event.get()
 
@@ -84,5 +91,6 @@ while loop:
     ## delay by frame rate
     pygame.display.flip()
     clock.tick(60)
+
 
 pygame.quit()
