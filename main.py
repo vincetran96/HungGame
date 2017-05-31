@@ -56,7 +56,7 @@ loop = True
 # game_manager.add(eat)
 # physics.add_fruits(eat)
 
-i = 30
+i = 1111
 
 pygame.mixer.music.load('resources/music.mp3')
 pygame.mixer.music.play(-1)
