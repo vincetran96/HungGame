@@ -8,6 +8,7 @@ from boxcollider import *
 import random
 from object_state import ObjectState
 from player import Player
+from health_bar import *
 
 class NonEdible:
     def __init__(self):
@@ -28,8 +29,11 @@ class NonEdible:
         
         if self.position.y >= 600:
             self.active = False
-        
-        self.renderer.staterender.flipped = (self.direction_x < 0)
+
+        if self.direction_x < 0:
+            self.renderer.staterender.flipped = True
+        if self.direction_x > 0:
+            self.renderer.staterender.flipped = False
 
         target = physics.check_contact(self.box_collider)
         if target is not None and type(target) is Player:

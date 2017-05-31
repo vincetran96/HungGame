@@ -20,3 +20,7 @@ class Point:
     def copy(self, other):
         self.x = other.x
         self.y = other.y
+
+    def set_pos(self, x, y):
+        self.x = x
+        self.y = y

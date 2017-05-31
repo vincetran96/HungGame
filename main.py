@@ -9,6 +9,8 @@ from nonedible import *
 import random
 from physics import *
 from sfx_mixer import *
+from health_bar import *
+from point import *
 
 
 def init_pygame():
@@ -22,11 +24,12 @@ def run():
     game_manager.run()
     physics.check_hit_wall()
     physics.check_hit_ground()
-    # sound_manager.play_sounds()
+    health_bar.run()
 
 def draw(screen):
     screen.fill((0, 0, 0))
     game_manager.draw(screen)
+    health_bar.draw(screen)
 
 def mix():
     #game_manager.mix()
@@ -40,10 +43,15 @@ player = Player()
 game_manager.add(player)
 player.constraints = Constraints(0,800,0,600)
 
-#test_sound = pygame.mixer.Sound("resources/player/sounds/")
-#sound_manager.add(test_sound)
+health_bar.position.set_pos(330, 100)
+health_bar.hp = 800
+#game_manager.add(health_bar)
 
 loop = True
+# eat = NonEdible()
+# eat.position.x = random.randrange(50, 750)
+# game_manager.add(eat)
+# physics.add_fruits(eat)
 
 i = 30
 while loop:
@@ -62,6 +70,7 @@ while loop:
         game_manager.add(eat)
         physics.add_fruits(eat)
         i = 30
+        health_bar.hp -= 50
 
     ## Update logic
     run()
