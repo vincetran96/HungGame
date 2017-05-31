@@ -11,8 +11,6 @@ class BoxCollider:
         print(self.position.x, self.position.y, self.width, self.height)
 
     def check_collide(self, other):
-        # self.print()
-        # other.print()
         rect1 = Rect(self.position.x - self.width / 2,
                      self.position.y - self.height / 2,
                      self.width,
