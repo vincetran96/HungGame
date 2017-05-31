@@ -37,8 +37,8 @@ def mix():
     #game_manager.mix()
     pass
 
-screen = init_pygame()
-clock = pygame.time.Clock()
+# screen = init_pygame()
+# clock = pygame.time.Clock()
 
 game_manager.add(Background())
 player = Player()
@@ -56,7 +56,7 @@ loop = True
 # game_manager.add(eat)
 # physics.add_fruits(eat)
 
-i = 1111
+i = 30
 
 pygame.mixer.music.load('resources/music.mp3')
 pygame.mixer.music.play(-1)
