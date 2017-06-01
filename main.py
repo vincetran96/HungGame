@@ -51,13 +51,13 @@ while loop:
             loop = False
 
     input_manager.run(events)
-    i += 1
-    if i == 60:
-        eat = NonEdible()
-        eat.position.x = random.randrange(50, 750)
-        game_manager.add(eat)
-        physics.add_fruits(eat)
-        i = 0
+    # i += 1
+    # if i == 60:
+    #     eat = NonEdible()
+    #     eat.position.x = random.randrange(50, 750)
+    #     game_manager.add(eat)
+    #     physics.add_fruits(eat)
+    #     i = 0
 
     ## Update logic
     run()

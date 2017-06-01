@@ -9,7 +9,8 @@ class StateSFXMixer:
         for state in self.mixer_state_mngr.states[1:]:
             # ASSUMING THERE IS ONLY 1 SOUND FOR EACH STATE
             path = self.path + "sounds/" + state + ".wav"
-            self.sfx_dict[state] =  pygame.mixer.Sound(path)
+            sfx_sound = pygame.mixer.Sound(path)
+            self.sfx_dict[state] = dict(length=sfx_sound.get_length(), sound=sfx_sound)
 
         self.counter = 0
         self.last_state = None
@@ -19,8 +20,8 @@ class StateSFXMixer:
         current_state = self.mixer_state_mngr.state
 
         if current_state != "normal":
-            sound = self.sfx_dict[current_state]
-            sound_length = sound.get_length()
+            sound = self.sfx_dict[current_state]["sound"]
+            sound_length = self.sfx_dict[current_state]["length"]
             sound_frames = int(sound_length / (1 / 60))
 
             if current_state != self.last_state:
