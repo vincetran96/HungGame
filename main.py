@@ -22,15 +22,12 @@ def run():
     physics.check_hit_wall()
     physics.check_hit_ground()
 
+def mix():
+    game_manager.mix()
 
 def draw(screen):
     screen.fill((0, 0, 0))
     game_manager.draw(screen)
-
-
-def mix():
-    # game_manager.mix()
-    pass
 
 
 screen = init_pygame()
@@ -44,7 +41,7 @@ player.constraints = Constraints(0,800,0,600)
 
 loop = True
 
-i = 30
+i = 0
 while loop:
     events = pygame.event.get()
 
@@ -54,13 +51,13 @@ while loop:
             loop = False
 
     input_manager.run(events)
-    i -= 1
-    if i == 0:
+    i += 1
+    if i == 60:
         eat = NonEdible()
         eat.position.x = random.randrange(50, 750)
         game_manager.add(eat)
         physics.add_fruits(eat)
-        i = 30
+        i = 0
 
     ## Update logic
     run()

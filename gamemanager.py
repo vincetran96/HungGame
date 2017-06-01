@@ -20,7 +20,7 @@ class GameManager:
     def mix(self):
         for game_object in self.game_objects:
             if game_object.active and game_object.sfx_mixer is not None:
-                mixer = game_object.sfx_mixer
-                mixer.mix()
+                game_object.sfx_mixer.mix()
+
 
 game_manager = GameManager()

@@ -11,7 +11,7 @@ class Player:
         self.position = Point()
         self.state_mngr = ObjectState("player")
         self.renderer = InfiniAnimation("resources/player/", self.state_mngr)
-        # self.sfx_mixer = SFXMixer("resources/player/", self.state_mngr)
+        self.sfx_mixer = SFXMixer("resources/player/", self.state_mngr)
         self.constraints = None
         self.active = True
         self.position.x = 200
@@ -63,10 +63,6 @@ class Player:
             if input_manager.left_pressed == False:
                 self.state_mngr.state = "normal"
 
-        # if input_manager.right_pressed == False:
-        #     self.state_mngr.state = "normal"
-        # if input_manager.left_pressed == False:
-        #     self.state_mngr.state = "normal"
 
     def roll(self):
         if input_manager.space_pressed:
@@ -82,7 +78,7 @@ class Player:
         # OLD WAY OF MAKING EAT ANIMATION
         if self.state_mngr.state == "eat":
             self.eat_counter += 1
-            print (self.eat_counter)
+            #print (self.eat_counter)
             if self.eat_counter == 69:
                 self.eat_counter = 0
                 self.state_mngr.state = "normal"
