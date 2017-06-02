@@ -5,7 +5,7 @@ from inputmanager import *
 from object_state import ObjectState
 from nonedible import *
 from edible import *
-import health_bar
+from health_bar import *
 
 
 
@@ -21,7 +21,6 @@ class Player:
         self.position.y = 500
         self.box_collider = BoxCollider(self.position, 90, 10)
         self.eat_counter = 0
-        self.health_bar = health_bar.HealthBar()
         physics.add(self)
 
 
@@ -34,8 +33,8 @@ class Player:
         something = physics.check_contact(self.box_collider)
         if something is not None and type(something) is NonEdible:
             something.active = False
-            self.health_bar.hp -= 50
-            print ("Your HP is {}".format(self.health_bar.hp))
+            health_bar.hp -= 50
+            print ("Your HP is {}".format(health_bar.hp))
         if something is not None and type(something) is Edible:
             # self.eat_counter += 1
             # OLD WAY OF MAKING EAT ANIMATION

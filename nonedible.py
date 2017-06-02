@@ -21,6 +21,7 @@ class NonEdible:
         self.direction_y = 5
         self.ground_hit = 0
         self.box_collider = BoxCollider(self.position, self.renderer.width, self.renderer.height)
+        physics.add_fruits(self)
 
 
     def run(self):
