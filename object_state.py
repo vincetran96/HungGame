@@ -7,7 +7,7 @@ class ObjectState:
         if object_str == "player":
             self.states = ["normal", "move", "eat", "roll"]
         elif object_str == "edible" or object_str == "non_edible":
-            self.states = ["normal", "move"]
+            self.states = ["move", "normal"]
 
         # DEFAULT BEGINNING STATE
         self.state = self.states[0]

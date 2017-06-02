@@ -10,7 +10,7 @@ class Physics:
         self.fruits.append(game_object)
 
     def check_contact(self, box_collider):
-        for game_object in self.game_objects:
+        for game_object in self.fruits:
             if game_object.active == True:
                 box_collider1 = box_collider
                 box_collider2 = game_object.box_collider
@@ -47,5 +47,6 @@ class Physics:
             if fruit.ground_hit == 4 and fruit.position.y >= 530:
                 fruit.direction_x = 0
                 fruit.direction_y = 0
+                fruit.active = False
 
 physics = Physics()

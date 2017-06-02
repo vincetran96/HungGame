@@ -21,8 +21,7 @@ class StateSFXMixer:
 
         if current_state != "normal":
             sound = self.sfx_dict[current_state]["sound"]
-            sound_length = self.sfx_dict[current_state]["length"]
-            sound_frames = int(sound_length / (1 / 60))
+            sound_frames = int(self.sfx_dict[current_state]["length"] / (1/60))
 
             if current_state != self.last_state:
                 self.counter = 0
