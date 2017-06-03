@@ -2,16 +2,21 @@ class Physics:
     def __init__(self):
         self.game_objects = []
         self.fruits = []
+        self.traps = []
 
     def add(self, game_object):
         self.game_objects.append(game_object)
 
     def add_fruits(self, game_object):
         self.fruits.append(game_object)
+        self.game_objects.append(game_object)
+
+    def add_traps(self, game_object):
+        self.game_objects.append(game_object)
 
     def check_contact(self, box_collider):
-        for game_object in self.fruits:
-            if game_object.active == True:
+        for game_object in self.game_objects:
+            if game_object.active:
                 box_collider1 = box_collider
                 box_collider2 = game_object.box_collider
                 if box_collider1.check_collide(box_collider2):

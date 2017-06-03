@@ -7,25 +7,28 @@ from constraints import *
 from boxcollider import *
 import random
 from object_state import ObjectState
+
+
 # from player import Player
 
-class NonEdible:
+class Trap:
     def __init__(self):
         self.active = True
         self.position = Point()
-        self.state_mngr = ObjectState("non_edible")
-        self.renderer = InfiniAnimation("resources/non_edible/", self.state_mngr)
+        self.state_mngr = ObjectState ("trap")
+        self.renderer = InfiniAnimation("resources/trap/", self.state_mngr)
         self.sfx_mixer = None
         self.constraints = None
-        self.direction_x = random.choice((-5,0,5))
+        self.direction_x = random.choice ((-5, 0, 5))
         self.direction_y = 5
         self.ground_hit = 0
-        self.box_collider = BoxCollider(self.position, self.renderer.width, self.renderer.height)
-
+        self.box_collider = BoxCollider (self.position, self.renderer.width, self.renderer.height)
+        physics.add_traps(self)
+        game_manager.add(self)
 
     def run(self):
-        self.position.add_up(self.direction_x, self.direction_y)
-        
+        self.position.add_up (self.direction_x, self.direction_y)
+
         if self.position.y >= 600:
             self.active = False
 

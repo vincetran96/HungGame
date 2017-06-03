@@ -9,6 +9,7 @@ from nonedible import *
 import random
 from physics import *
 from sfx_mixer import *
+from trap import *
 
 def init_pygame():
     pygame.init()
@@ -52,13 +53,16 @@ while loop:
 
     input_manager.run(events)
     i += 1
-    if i == 60:
+    if i % 90 == 0:
         eat, non_eat = Edible(), NonEdible()
         eat.position.x = random.randrange(50, 750)
         non_eat.position.x = random.randrange(50, 750)
         game_manager.add(eat)
         game_manager.add(non_eat)
         i = 0
+    if i % 120 == 0:
+        trap = Trap()
+        trap.position.x = random.randrange (50, 750)
 
     ## Update logic
     run()
