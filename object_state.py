@@ -5,7 +5,8 @@
 class ObjectState:
     def __init__(self, object_str):
         if object_str == "player":
-            self.states = ["normal", "move", "eat", "roll"]
+            self.states = ["normal", "move", "eat",
+                           "preroll", "roll"]
         elif object_str == "edible" or object_str == "non_edible":
             self.states = ["move", "normal"]
 

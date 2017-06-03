@@ -31,3 +31,4 @@ class InfiniAnimation:
     # DRAWING TASKS ARE ASSIGNED TO StateRender
     def draw(self, screen, position):
         self.staterender.draw_state(screen, position)
+

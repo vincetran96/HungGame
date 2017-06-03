@@ -21,12 +21,13 @@ class Player:
         self.position.y = 500
         self.box_collider = BoxCollider(self.position, 90, 10)
         self.eat_counter = 0
+        self.roll_counter = 0
         physics.add(self)
 
 
     def run(self):
+        self.check_eat ()
         self.move()
-        self.check_eat()
 
 
     def check_eat(self):
@@ -39,16 +40,13 @@ class Player:
             # self.eat_counter += 1
             # OLD WAY OF MAKING EAT ANIMATION
             something.active = False
-            self.state_mngr.state = "eat"
-            #self.eat()
+            self.eat()
 
 
     def move(self):
         self.rightleft()
 
         self.roll()
-
-        self.eat()
 
         self.key_cleared()
 
@@ -79,24 +77,39 @@ class Player:
 
     # PART OF MOVE
     def roll(self):
+        self.roll_counter += 1
+
         if input_manager.space_pressed:
-            self.position.y = 530                   # THIS WILL BE REMOVED LATER AS RESIZED IMAGE IS AVAILABLE
-            self.state_mngr.state = "roll"
-            #self.box_collider.position.y = 530     # THIS WILL BE ADDED LATER AS RESIZED IMAGE IS AVAILABLE
+            self.position.y = 530                       # THIS WILL BE REMOVED LATER AS RESIZED IMAGE IS AVAILABLE
+            # self.box_collider.position.y = 530        # THIS WILL BE ADDED LATER AS RESIZED IMAGE IS AVAILABLE
+            if self.roll_counter < 49:
+                self.state_mngr.state = "preroll"
+            else:
+                self.state_mngr.state = "roll"
+
         if not input_manager.space_pressed:
+            self.roll_counter = 0
             self.position.y = 500
+
+    def pre_roll(self):
+        count = 0
+        self.state_mngr.state = "preroll"
+        count += 1
 
     # PART OF MOVE
     def eat(self):
-        # IN key_cleared CONDITION, TETE CAN ONLY SPEND 5 OR 6 FRAMES FOR EATING (HE CANNOT EAT FOREVER!), SO THE ANIMATION MUST STOP
+        self.state_mngr.state = "eat"
+        self.eat_counter += 1
 
         # OLD WAY OF MAKING EAT ANIMATION
-        if self.state_mngr.state == "eat":
-            self.eat_counter += 1
-            #print (self.eat_counter)
-            if self.eat_counter == 69:
-                self.eat_counter = 0
-                self.state_mngr.state = "normal"
+        # print (self.eat_counter)
+        # IN key_cleared CONDITION, TETE CAN ONLY SPEND 5 OR 6 FRAMES FOR EATING (HE CANNOT EAT FOREVER!),
+        # SO THE ANIMATION MUST STOP
+        # WHY 69 HERE? THERE ARE 7 EATING FRAMES, BUT EACH EATING FRAMES TAKES 10 GAME FRAMES TO BE RENDERED (SEE
+        # staterender MODULE)
+        if self.eat_counter == 69:
+            self.eat_counter = 0
+            self.state_mngr.state = "normal"
 
         # if self.eat_counter > 0:
         #     self.state_mngr.state = "eat"
