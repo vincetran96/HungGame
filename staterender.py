@@ -38,7 +38,9 @@ class StateRender:
 
         max_frames = len(frames) - 1
         self.counter += 1
-        if self.counter == 10:
+
+        # SLOW IT DOWN 10 TIMES
+        if self.counter == 9:
             self.counter = 0
             self.image_index = (self.image_index + 1) % (max_frames + 1)
 

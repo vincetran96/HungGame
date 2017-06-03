@@ -10,34 +10,25 @@ import random
 from physics import *
 from sfx_mixer import *
 
-display_width = 800
-display_height = 600
 def init_pygame():
     pygame.init()
-    screen = pygame.display.set_mode((display_width, display_height))
+    screen = pygame.display.set_mode((800, 600))
     pygame.display.set_caption("Hung Game")
-    myfont = pygame.font.Font(None, 36)
-    text = myfont.render(str(Player.score), 1, (WHITE))
+
     return screen
 
 def run():
     game_manager.run()
     physics.check_hit_wall()
     physics.check_hit_ground()
-    # sound_manager.play_sounds()
+
+def mix():
+    game_manager.mix()
 
 def draw(screen):
     screen.fill((0, 0, 0))
     game_manager.draw(screen)
 
-
-def message_to_screen(msg, color):
-
-    pass
-
-def mix():
-    # game_manager.mix()
-    pass
 
 screen = init_pygame()
 clock = pygame.time.Clock()
@@ -47,14 +38,10 @@ player = Player()
 game_manager.add(player)
 player.constraints = Constraints(0,800,0,600)
 
-#test_sound = pygame.mixer.Sound("resources/player/sounds/")
-#sound_manager.add(test_sound)
-
-
 
 loop = True
 
-i = 30
+i = 0
 while loop:
     events = pygame.event.get()
 
@@ -64,13 +51,14 @@ while loop:
             loop = False
 
     input_manager.run(events)
-    i -= 1
-    if i == 0:
-        eat = NonEdible()
+    i += 1
+    if i == 60:
+        eat, non_eat = Edible(), NonEdible()
         eat.position.x = random.randrange(50, 750)
+        non_eat.position.x = random.randrange(50, 750)
         game_manager.add(eat)
-        physics.add_fruits(eat)
-        i = 30
+        game_manager.add(non_eat)
+        i = 0
 
     ## Update logic
     run()
