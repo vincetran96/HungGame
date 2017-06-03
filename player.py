@@ -5,6 +5,7 @@ from inputmanager import *
 from object_state import ObjectState
 from nonedible import *
 
+
 class Player:
     def __init__(self):
         self.position = Point()
@@ -16,6 +17,7 @@ class Player:
         self.position.x = 200
         self.position.y = 500
         self.box_collider =BoxCollider(self.position, 90, 10)
+        self.score = 0
 
     def run(self):
         self.move()
@@ -24,6 +26,10 @@ class Player:
         if something is not None and type(something) is NonEdible:
             something.active = False
             print ("eaten NonEdible")
+            self.score -= 1
+            print (self.score)
+
+
 
     def move(self):
         self.rightleft()
@@ -71,3 +77,4 @@ class Player:
         # elif input_manager.up_pressed:
         #     self.position.add_up(0, -5)
         #     self.renderer.staterender.state = "move"
+

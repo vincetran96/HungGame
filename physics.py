@@ -1,3 +1,6 @@
+import math
+
+
 class Physics:
     def __init__(self):
         self.game_objects = []
@@ -20,32 +23,34 @@ class Physics:
     def check_hit_wall(self):
         for fruit in self.fruits:
             if fruit.position.x <= 0 or fruit.position.x >= 800:
-                fruit.direction_x = fruit.direction_x * -1
+                fruit.direction_x *= -1
 
     def check_hit_ground(self):
         for fruit in self.fruits:
             if fruit.ground_hit == 0 and fruit.position.y >= 530 :
-                fruit.direction_y = fruit.direction_y * -0.7
-                fruit.direction_x = fruit.direction_x
                 fruit.ground_hit += 1
+                fruit.direction_x *= 1
+                fruit.direction_y *= -0.7
 
             if fruit.ground_hit == 1 and fruit.position.y <= 480:
-                fruit.direction_y = fruit.direction_y * -0.7
-                fruit.direction_x = fruit.direction_x
                 fruit.ground_hit += 1
+                fruit.direction_x *= 1
+                fruit.direction_y *= -0.7
 
             if fruit.ground_hit == 2 and fruit.position.y >= 530:
-                fruit.direction_y = fruit.direction_y * -1
-                fruit.direction_x = fruit.direction_x * 0.8
                 fruit.ground_hit += 1
+                fruit.direction_x *= 0.8
+                fruit.direction_y *= -1
 
             if fruit.ground_hit == 3 and fruit.position.y <= 500:
-                fruit.direction_y = fruit.direction_y * -1
-                fruit.direction_x = fruit.direction_x * 0.8
                 fruit.ground_hit += 1
+                fruit.direction_x *= 0.8
+                fruit.direction_y *= -1
 
             if fruit.ground_hit == 4 and fruit.position.y >= 530:
                 fruit.direction_x = 0
                 fruit.direction_y = 0
+
+
 
 physics = Physics()

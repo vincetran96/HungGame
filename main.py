@@ -10,11 +10,14 @@ import random
 from physics import *
 from sfx_mixer import *
 
+display_width = 800
+display_height = 600
 def init_pygame():
     pygame.init()
-    screen = pygame.display.set_mode((800, 600))
+    screen = pygame.display.set_mode((display_width, display_height))
     pygame.display.set_caption("Hung Game")
-
+    myfont = pygame.font.Font(None, 36)
+    text = myfont.render(str(Player.score), 1, (WHITE))
     return screen
 
 def run():
@@ -26,6 +29,11 @@ def run():
 def draw(screen):
     screen.fill((0, 0, 0))
     game_manager.draw(screen)
+
+
+def message_to_screen(msg, color):
+
+    pass
 
 def mix():
     # game_manager.mix()
@@ -41,6 +49,8 @@ player.constraints = Constraints(0,800,0,600)
 
 #test_sound = pygame.mixer.Sound("resources/player/sounds/")
 #sound_manager.add(test_sound)
+
+
 
 loop = True
 
