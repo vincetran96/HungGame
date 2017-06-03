@@ -39,16 +39,16 @@ game_manager.add(player)
 player.constraints = Constraints(0,800,0,600)
 
 
-loop = True
+playing = True
 
 i = 0
-while loop:
+while playing:
     events = pygame.event.get()
 
     # Handle QUIT event
     for event in events:
         if event.type == pygame.QUIT:
-            loop = False
+            playing = False
 
     input_manager.run(events)
     i += 1
