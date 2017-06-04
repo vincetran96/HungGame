@@ -29,11 +29,16 @@ def run():
     physics.check_hit_ground()
 
 def mix():
-    game_manager.mix()
+    #game_manager.mix()
+    pass
 
 def draw_screen(screen):
     screen.fill((0, 0, 0))
     game_manager.draw(screen)
+
+def check_lose():
+    if player.missed_edibles >= 10:
+        print ("NOOB")
 
 screen = init_pygame()
 clock = pygame.time.Clock()
@@ -41,8 +46,7 @@ clock = pygame.time.Clock()
 game_manager.add(Background())
 player = Player()
 game_manager.add(player)
-#player.constraints = Constraints(0, WIDTH, 0, HEIGHT)
-
+player.constraints = Constraints(0, WIDTH, 0, HEIGHT)
 
 playing = True
 
@@ -58,11 +62,9 @@ while playing:
     input_manager.run(events)
     i += 1
     if i % 90 == 0:
-        eat, non_eat = Ant(), Bird()
-
+        non_edible = Bird()
     if i == 120:
         lion = Lion ()
-        print ("Spawn Lion!")
         game_manager.add (lion)
         # trap = Trap()
         # trap.position.x = random.randrange (50, 750)

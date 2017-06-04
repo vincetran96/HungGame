@@ -39,14 +39,14 @@ class Lion:
 
     # PART OF RUN
     def attack(self):
-        if self.atk_time in range(120,240):
+        if self.atk_time in range(120, 240):
             self.state_mngr.state = "attack"
-            self.position.add_up(7, 0)
+            self.position.add_up(3, 0)
 
     def retreat(self):
         if self.atk_time in range(0, 120):
             self.state_mngr.state = "retreat"
-            self.position.add_up(-7, 0)
+            self.position.add_up(-3, 0)
 
     # THIS IS NOT WORKING BECAUSE Player IS NOT IN Physic's game_objects
     def check_hit(self):

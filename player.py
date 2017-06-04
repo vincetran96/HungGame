@@ -27,6 +27,7 @@ class Player:
         self.roll_counter = settings.Counter(100)
         self.move_disabled = False
         self.score = 0
+        self.missed_edibles = 0
         #physics.add(self) # NO NEED TO ADD self
 
     def run(self):
@@ -40,7 +41,6 @@ class Player:
             something.active = False
             self.score -= 10
             print("Your Score is {}".format(self.score))
-
 
         if something is not None and Edible in inspect.getmro(type(something)):
             # self.eat_counter += 1
