@@ -14,6 +14,7 @@ class Physics:
         self.fruits.append(game_object)
         self.game_objects.append(game_object)
 
+    #  Why need this ??
     def add_traps(self, game_object):
         self.game_objects.append(game_object)
 

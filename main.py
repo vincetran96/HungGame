@@ -15,7 +15,6 @@ def init_pygame():
     pygame.init()
     screen = pygame.display.set_mode((800, 600))
     pygame.display.set_caption("Hung Game")
-
     return screen
 
 def run():
@@ -29,6 +28,14 @@ def mix():
 def draw(screen):
     screen.fill((0, 0, 0))
     game_manager.draw(screen)
+
+def draw_text( text, size, color, x, y): #For score and player's status
+    font_name = pygame.font.match_font('arial')
+    font = pygame.font.Font(font_name, size)
+    text_surface = font.render(text, True, color)
+    text_rect = text_surface.get_rect()
+    text_rect.midtop = (x, y)
+    screen.blit(text_surface, text_rect)
 
 
 screen = init_pygame()
@@ -69,7 +76,7 @@ while playing:
 
     ## update graphics
     draw(screen)
-
+    draw_text(str(player.score), 40, (255, 255, 255), 400, 20)
     ## play sfx
     mix()
 

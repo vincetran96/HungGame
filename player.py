@@ -24,6 +24,7 @@ class Player:
         self.eat_counter = 0
         self.roll_counter = 0
         self.move_disabled = False
+        self.score = 0
         #physics.add(self) # NO NEED TO ADD self
 
 
@@ -36,17 +37,23 @@ class Player:
         if something is not None and type(something) is NonEdible:
             something.active = False
             health_bar.hp -= 50
+            self.score -= 10
             print("Your HP is {}".format(health_bar.hp))
+            print("Your Score is {}".format(self.score))
+
+
         if something is not None and type(something) is Edible:
             # self.eat_counter += 1
             # OLD WAY OF MAKING EAT ANIMATION
             something.active = False
             self.state_mngr.state = "eat"
             self.eat_counter = 0
-        if something is not None and type(something) is Trap:
-            print ("TRAPPED!")
-            self.move_disabled = True
-            self.move_counter = 0
+            self.score += 10
+            
+        # if something is not None and type(something) is Trap:
+        #     print ("TRAPPED!")
+        #     self.move_disabled = True
+        #     self.move_counter = 0
 
     def move(self):
         if not self.move_disabled:
