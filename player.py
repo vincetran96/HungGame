@@ -8,6 +8,7 @@ from nonedible import *
 from edible import *
 from health_bar import *
 from trap import *
+from settings import *
 
 
 class Player:
@@ -19,7 +20,7 @@ class Player:
         self.constraints = None
         self.active = True
         self.position.x = 200
-        self.position.y = 500
+        self.position.y = GROUND_y - self.renderer.height
         self.box_collider = BoxCollider(self.position, 90, 10)
         self.eat_counter = settings.Counter(120)      # ABOUT 2-frames DELAY, SO FROM 69 TO 120,......,
         self.roll_counter = settings.Counter(100)

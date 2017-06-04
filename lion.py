@@ -7,7 +7,7 @@ from constraints import *
 from boxcollider import *
 import random
 from object_state import ObjectState
-import settings
+from settings import *
 from player import *
 
 
@@ -17,6 +17,7 @@ class Lion:
         self.position = Point ()
         self.state_mngr = ObjectState ("lion")
         self.renderer = InfiniAnimation ("resources/lion/", self.state_mngr)
+        self.position.y = GROUND_y - self.renderer.height
         self.sfx_mixer = None
         self.constraints = None
         self.box_collider = BoxCollider (self.position, self.renderer.width, self.renderer.height)

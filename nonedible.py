@@ -7,13 +7,13 @@ from constraints import *
 from boxcollider import *
 import random
 from object_state import ObjectState
+from settings import *
 # from player import Player
 
 class NonEdible:
     def __init__(self):
         self.active = True
         self.position = Point()
-        self.position.x = random.randrange(50, 750)
         self.state_mngr = ObjectState("non_edible")
         self.constraints = None
         self.ground_hit = 0
@@ -23,6 +23,7 @@ class Fruit(NonEdible):
     def __init__(self):
         NonEdible.__init__(self)
         self.renderer = InfiniAnimation("resources/fruit/", self.state_mngr)
+        self.position.x = random.randrange (50, 750)
         self.sfx_mixer = None
         self.direction_x = random.choice ((-5, 0, 5))
         self.direction_y = 5
@@ -49,6 +50,7 @@ class Bird(NonEdible):
     def __init__(self):
         NonEdible.__init__ (self)
         self.renderer = InfiniAnimation ("resources/bird/", self.state_mngr)
+        self.position.x = random.randrange (50, 750)
         self.sfx_mixer = None
         self.direction_x = random.choice ((-5, 0, 5))
         self.direction_y = 5

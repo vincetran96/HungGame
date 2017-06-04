@@ -41,7 +41,7 @@ clock = pygame.time.Clock()
 game_manager.add(Background())
 player = Player()
 game_manager.add(player)
-player.constraints = Constraints(0, WIDTH, 0, HEIGHT)
+#player.constraints = Constraints(0, WIDTH, 0, HEIGHT)
 
 
 playing = True
@@ -58,16 +58,12 @@ while playing:
     input_manager.run(events)
     i += 1
     if i % 90 == 0:
-        eat, non_eat = Edible(), NonEdible()
-        eat.position.x = random.randrange(50, WIDTH - 50)
-        non_eat.position.x = random.randrange(50, WIDTH - 50)
+        eat, non_eat = Ant(), Bird()
 
     if i == 120:
         lion = Lion ()
         print ("Spawn Lion!")
         game_manager.add (lion)
-        lion.position.x = 50
-        lion.position.y = GROUND_y
         # trap = Trap()
         # trap.position.x = random.randrange (50, 750)
 
