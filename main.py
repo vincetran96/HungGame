@@ -19,6 +19,9 @@ def init_pygame():
     pygame.display.set_caption(game.game_title)
     return screen
 
+pygame.mixer.init()
+pygame.mixer.music.load("resources/music.mp3")
+pygame.mixer.music.play(-1,0.0)
 def run():
     game_manager.run()
     physics.check_hit_wall()

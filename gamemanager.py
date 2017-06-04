@@ -1,3 +1,5 @@
+
+
 class GameManager:
     def __init__(self):
         self.game_objects = []
@@ -21,6 +23,7 @@ class GameManager:
         for game_object in self.game_objects:
             if game_object.active and game_object.sfx_mixer is not None:
                 game_object.sfx_mixer.mix()
+
 
 
 game_manager = GameManager()
