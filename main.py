@@ -29,8 +29,7 @@ def run():
     physics.check_hit_ground()
 
 def mix():
-    #game_manager.mix()
-    pass
+    game_manager.mix()
 
 def draw_screen(screen):
     screen.fill((0, 0, 0))
@@ -63,6 +62,7 @@ while playing:
     i += 1
     if i % 90 == 0:
         non_edible = Bird()
+        edible = Fly()
     if i == 120:
         lion = Lion ()
         game_manager.add (lion)
