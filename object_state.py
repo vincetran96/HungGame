@@ -11,6 +11,8 @@ class ObjectState:
             self.states = ["move", "normal"]
         elif object_str == "trap":
             self.states = ["normal"]
+        elif object_str == "lion":
+            self.states = ["normal", "attack", "retreat"]
 
         # DEFAULT BEGINNING STATE
         self.state = self.states[0]

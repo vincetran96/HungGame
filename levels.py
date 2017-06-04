@@ -12,7 +12,6 @@ class Counter:
 
     def countdown(self):
         self.counter -= 1
-        print("Counted {}".format(self.counter))
         if self.counter < 0:
             return True
 

@@ -44,8 +44,9 @@ class Player:
             something.active = False
         if something is not None and type(something) is Trap:
             self.move_disabled = True
-            self.sfx_mixer.mix_now ()
+            self.sfx_mixer.mix_now()
             self.move_counter = levels.Counter(240)
+
 
     def move(self):
         if not self.move_disabled:
