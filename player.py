@@ -10,7 +10,6 @@ from health_bar import *
 from trap import *
 
 
-
 class Player:
     def __init__(self):
         self.position = Point()
@@ -27,7 +26,6 @@ class Player:
         self.move_disabled = False
         #physics.add(self) # NO NEED TO ADD self
 
-
     def run(self):
         self.check()
         self.move()
@@ -41,11 +39,12 @@ class Player:
         if something is not None and type(something) is Edible:
             # self.eat_counter += 1
             # OLD WAY OF MAKING EAT ANIMATION
-            something.active = False
             self.state_mngr.state = "eat"
+            self.sfx_mixer.mix_now()
+            something.active = False
         if something is not None and type(something) is Trap:
-            print ("TRAPPED!")
             self.move_disabled = True
+            self.sfx_mixer.mix_now ()
             self.move_counter = levels.Counter(240)
 
     def move(self):
@@ -88,11 +87,12 @@ class Player:
             self.position.y = 530                       # THIS WILL BE REMOVED LATER AS RESIZED IMAGE IS AVAILABLE
             # self.box_collider.position.y = 530        # THIS WILL BE ADDED LATER AS RESIZED IMAGE IS AVAILABLE
             if self.roll_counter.countdown():
-                print ("ROLL!")
                 self.state_mngr.state = "roll"
             else:
                 self.state_mngr.state = "preroll"
-
+                if input_manager.space_play:
+                    self.sfx_mixer.mix_now()
+                    input_manager.space_play = False
         if not input_manager.space_pressed:
             self.roll_counter.reset()
             self.position.y = 500
