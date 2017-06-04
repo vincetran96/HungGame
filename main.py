@@ -18,7 +18,8 @@ def init_pygame():
     pygame.display.set_caption("Hung Game")
 
     return screen
-
+#bay mất cmn music là sao zạ?
+#đang tìm hiểu nguyên nhân
 def run():
     game_manager.run()
     physics.check_hit_wall()
