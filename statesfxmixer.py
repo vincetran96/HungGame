@@ -19,7 +19,7 @@ class StateSFXMixer:
     def mix_state(self):
         current_state = self.mixer_state_mngr.state
 
-        if current_state != "normal":
+        if current_state in self.mixer_state_mngr.states[4:]:
             sound = self.sfx_dict[current_state]["sound"]
             sound_frames = int(self.sfx_dict[current_state]["length"] / (1/60))
 
