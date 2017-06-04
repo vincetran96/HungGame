@@ -7,7 +7,7 @@ from constraints import *
 from boxcollider import *
 import random
 from object_state import ObjectState
-import levels
+import settings
 from player import *
 
 
@@ -20,7 +20,7 @@ class Lion:
         self.sfx_mixer = None
         self.constraints = None
         self.box_collider = BoxCollider (self.position, self.renderer.width, self.renderer.height)
-        self.atk_counter = levels.Counter(240)
+        self.atk_counter = settings.Counter(240)
         self.atk_time = 240
         physics.add(self)
 
