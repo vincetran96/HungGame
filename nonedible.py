@@ -24,7 +24,6 @@ class NonEdible:
         physics.add_fruits (self)
         game_manager.add(self)
 
-
     def run(self):
         self.position.add_up(self.direction_x, self.direction_y)
         

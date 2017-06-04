@@ -16,7 +16,6 @@ def init_pygame():
     pygame.init()
     screen = pygame.display.set_mode((800, 600))
     pygame.display.set_caption("Hung Game")
-
     return screen
 
 def run():
@@ -31,6 +30,14 @@ def draw(screen):
     screen.fill((0, 0, 0))
     game_manager.draw(screen)
 
+def draw_text( text, size, color, x, y): #For score and player's status
+    font_name = pygame.font.match_font('arial')
+    font = pygame.font.Font(font_name, size)
+    text_surface = font.render(text, True, color)
+    text_rect = text_surface.get_rect()
+    text_rect.midtop = (x, y)
+    screen.blit(text_surface, text_rect)
+
 
 screen = init_pygame()
 clock = pygame.time.Clock()
@@ -41,16 +48,16 @@ game_manager.add(player)
 player.constraints = Constraints(0,800,0,600)
 
 
-loop = True
+playing = True
 
 i = 0
-while loop:
+while playing:
     events = pygame.event.get()
 
     # Handle QUIT event
     for event in events:
         if event.type == pygame.QUIT:
-            loop = False
+            playing = False
 
     input_manager.run(events)
     i += 1
@@ -73,7 +80,7 @@ while loop:
 
     ## update graphics
     draw(screen)
-
+    draw_text(str(player.score), 40, (255, 255, 255), 400, 20)
     ## play sfx
     mix()
 
