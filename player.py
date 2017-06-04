@@ -1,3 +1,4 @@
+import inspect
 from point import *
 from renderer import *
 from sfx_mixer import *
@@ -34,7 +35,7 @@ class Player:
 
     def check(self):
         something = physics.check_contact(self.box_collider)
-        if something is not None and type(something) is NonEdible:
+        if something is not None and type(something) is Bird:
             something.active = False
             self.score -= 10
             print("Your Score is {}".format(self.score))

@@ -30,6 +30,7 @@ class Edible:
 class Ant(Edible):
     def __init__(self):
         Edible.__init__(self)
+        #self.__bases__ = Edible
         self.renderer = InfiniAnimation("resources/ant/", self.state_mngr)
         self.position.x = random.choice ((0, WIDTH))
         self.position.y = GROUND_y - self.renderer.height
