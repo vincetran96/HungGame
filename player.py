@@ -21,9 +21,10 @@ class Player:
         self.position.x = 200
         self.position.y = 500
         self.box_collider = BoxCollider(self.position, 90, 10)
-        self.eat_counter = levels.Counter(120)                                  # ABOUT 2-frames DELAY, SO FROM 69 TO 120
+        self.eat_counter = levels.Counter(120)      # ABOUT 2-frames DELAY, SO FROM 69 TO 120,......,
         self.roll_counter = levels.Counter(100)
         self.move_disabled = False
+        self.score = 0
         #physics.add(self) # NO NEED TO ADD self
 
     def run(self):
@@ -34,18 +35,30 @@ class Player:
         something = physics.check_contact(self.box_collider)
         if something is not None and type(something) is NonEdible:
             something.active = False
-            health_bar.hp -= 50
-            print("Your HP is {}".format(health_bar.hp))
+            self.score -= 10
+            print("Your Score is {}".format(self.score))
+
+
         if something is not None and type(something) is Edible:
             # self.eat_counter += 1
             # OLD WAY OF MAKING EAT ANIMATION
             self.state_mngr.state = "eat"
             self.sfx_mixer.mix_now()
             something.active = False
+            self.score += 10
+            
+        # if something is not None and type(something) is Trap:
+        #     print ("TRAPPED!")
+        #     self.move_disabled = True
+        #     self.move_counter = 0
+
+            self.sfx_mixer.mix_now()
+            something.active = False
         if something is not None and type(something) is Trap:
             self.move_disabled = True
             self.sfx_mixer.mix_now()
             self.move_counter = levels.Counter(240)
+
 
 
     def move(self):
