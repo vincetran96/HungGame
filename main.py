@@ -58,8 +58,6 @@ while playing:
     i += 1
     if i % 90 == 0:
         eat, non_eat = Edible(), NonEdible()
-        eat.position.x = random.randrange(50, 750)
-        non_eat.position.x = random.randrange(50, 750)
 
     if i == 120:
         lion = Lion ()

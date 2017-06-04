@@ -16,7 +16,7 @@ class Counter:
     def reset(self):
         self.counter = self.time
 
-class game:
+class Game:
     def __init__(self):
         self.screen_width = 800
         self.screen_height = 600
@@ -31,4 +31,4 @@ class game:
         text_rect.midtop = (x, y)
         screen.blit(text_surface, text_rect)
 
-game = game()
+game = Game()

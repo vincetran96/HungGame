@@ -14,6 +14,7 @@ class Edible:
     def __init__(self):
         self.active = True
         self.position = Point()
+        self.position.x = random.randrange(50, 750)
         self.state_mngr = ObjectState("edible")
         self.renderer = InfiniAnimation("resources/edible/", self.state_mngr)
         self.sfx_mixer = None
