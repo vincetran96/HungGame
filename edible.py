@@ -14,7 +14,7 @@ class Edible:
     def __init__(self):
         self.active = True
         self.position = Point()
-        self.position.x = random.randrange(50, 750)
+
         self.state_mngr = ObjectState("edible")
         self.renderer = InfiniAnimation("resources/edible/", self.state_mngr)
         self.sfx_mixer = None
@@ -40,3 +40,9 @@ class Edible:
             self.renderer.staterender.flipped = True
         if self.direction_x > 0:
             self.renderer.staterender.flipped = False
+
+
+class Ant(Edible):
+    def __init__(self):
+        Edible.__init__(self)
+        self.position.x = random.choice((0, game.width))
