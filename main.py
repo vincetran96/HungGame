@@ -10,6 +10,7 @@ import random
 from physics import *
 from sfx_mixer import *
 from trap import *
+from lion import *
 
 def init_pygame():
     pygame.init()
@@ -64,12 +65,15 @@ while playing:
         eat, non_eat = Edible(), NonEdible()
         eat.position.x = random.randrange(50, 750)
         non_eat.position.x = random.randrange(50, 750)
-        game_manager.add(eat)
-        game_manager.add(non_eat)
-        i = 0
-    if i % 120 == 0:
-        trap = Trap()
-        trap.position.x = random.randrange (50, 750)
+
+    if i == 120:
+        lion = Lion ()
+        print ("Spawn Lion!")
+        game_manager.add (lion)
+        lion.position.x = 50
+        lion.position.y = 520
+        # trap = Trap()
+        # trap.position.x = random.randrange (50, 750)
 
     ## Update logic
     run()

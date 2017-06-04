@@ -8,6 +8,7 @@ class InputManager:
         self.down_pressed = False
         self.space_pressed = False
         self.all_key_cleared = True                     # THIS PROPERTY CHECKS IF ALL KEYS ARE RELEASED
+        self.space_play = False
 
 
     def run(self, events):
@@ -20,6 +21,7 @@ class InputManager:
                     self.left_pressed = True
                 if event.key == pygame.K_SPACE:
                     self.space_pressed = True
+                    self.space_play = True
 
             elif event.type == pygame.KEYUP:
                 if event.key == pygame.K_RIGHT:

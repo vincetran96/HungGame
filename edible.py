@@ -23,6 +23,7 @@ class Edible:
         self.ground_hit = 0
         self.box_collider = BoxCollider(self.position, self.renderer.width, self.renderer.height)
         physics.add_fruits(self)
+        game_manager.add(self)
 
     def run(self):
         self.position.add_up(self.direction_x, self.direction_y)
