@@ -11,36 +11,28 @@ from physics import *
 from sfx_mixer import *
 from trap import *
 from lion import *
-
+from levels import *
 
 def init_pygame():
     pygame.init()
-    screen = pygame.display.set_mode((800, 600))
-    pygame.display.set_caption("Hung Game")
+    screen = pygame.display.set_mode((game.screen_width, game.screen_height))
+    pygame.display.set_caption(game.game_title)
     return screen
 
-
+pygame.mixer.init()
+pygame.mixer.music.load("resources/music.mp3")
+pygame.mixer.music.play(-1,0.0)
 def run():
     game_manager.run()
     physics.check_hit_wall()
     physics.check_hit_ground()
 
-
 def mix():
     game_manager.mix()
 
-def draw(screen):
+def draw_screen(screen):
     screen.fill((0, 0, 0))
     game_manager.draw(screen)
-
-def draw_text( text, size, color, x, y): #For score and player's status
-    font_name = pygame.font.match_font('arial')
-    font = pygame.font.Font(font_name, size)
-    text_surface = font.render(text, True, color)
-    text_rect = text_surface.get_rect()
-    text_rect.midtop = (x, y)
-    screen.blit(text_surface, text_rect)
-
 
 screen = init_pygame()
 clock = pygame.time.Clock()
@@ -48,7 +40,7 @@ clock = pygame.time.Clock()
 game_manager.add(Background())
 player = Player()
 game_manager.add(player)
-player.constraints = Constraints(0,800,0,600)
+player.constraints = Constraints(0, game.screen_width, 0, game.screen_height)
 
 
 playing = True
@@ -82,13 +74,14 @@ while playing:
     run()
 
     ## update graphics
-    draw(screen)
-    draw_text(str(player.score), 40, (255, 255, 255), 400, 20)
+    draw_screen(screen)
+    game.draw_text(screen, str(player.score), 40, (255, 255, 255), 400, 20 )
+
     ## play sfx
     mix()
 
     ## delay by frame rate
     pygame.display.flip()
-    clock.tick(60)
+    clock.tick(game.FPS)
 
 pygame.quit()
