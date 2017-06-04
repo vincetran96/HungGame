@@ -17,8 +17,10 @@ def init_pygame():
     screen = pygame.display.set_mode((800, 600))
     pygame.display.set_caption("Hung Game")
     return screen
-#bay mất cmn music là sao zạ?
-#đang tìm hiểu nguyên nhân
+
+pygame.mixer.init()
+pygame.mixer.music.load("resources/music.mp3")
+pygame.mixer.music.play(-1,0.0)
 def run():
     game_manager.run()
     physics.check_hit_wall()
