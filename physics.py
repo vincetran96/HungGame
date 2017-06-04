@@ -58,6 +58,4 @@ class Physics:
                 fruit.direction_y = 0
                 fruit.active = False
 
-
-
 physics = Physics()
