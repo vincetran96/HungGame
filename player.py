@@ -2,7 +2,7 @@ from point import *
 from renderer import *
 from sfx_mixer import *
 from inputmanager import *
-import levels
+import settings
 from object_state import ObjectState
 from nonedible import *
 from edible import *
@@ -21,8 +21,8 @@ class Player:
         self.position.x = 200
         self.position.y = 500
         self.box_collider = BoxCollider(self.position, 90, 10)
-        self.eat_counter = levels.Counter(120)      # ABOUT 2-frames DELAY, SO FROM 69 TO 120,......,
-        self.roll_counter = levels.Counter(100)
+        self.eat_counter = settings.Counter(120)      # ABOUT 2-frames DELAY, SO FROM 69 TO 120,......,
+        self.roll_counter = settings.Counter(100)
         self.move_disabled = False
         self.score = 0
         #physics.add(self) # NO NEED TO ADD self
@@ -57,7 +57,7 @@ class Player:
         if something is not None and type(something) is Trap:
             self.move_disabled = True
             self.sfx_mixer.mix_now()
-            self.move_counter = levels.Counter(240)
+            self.move_counter = settings.Counter(240)
 
 
 
