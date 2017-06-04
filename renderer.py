@@ -7,7 +7,6 @@ class SpriteRenderer:
         self.image = image
         self.width = self.image.get_width()
         self.height = self.image.get_height()
-        #self.flipped = False
 
     def draw(self, screen, position):
         egami = pygame.transform.flip(self.image, True, False)

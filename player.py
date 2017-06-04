@@ -115,8 +115,6 @@ class Player:
     def eat(self):
         if self.state_mngr.state == "eat":
             self.eat_counter.countdown()
-        # OLD WAY OF MAKING EAT ANIMATION
-        # print (self.eat_counter)
         # IN key_cleared CONDITION, TETE CAN ONLY SPEND 5 OR 6 FRAMES FOR EATING (HE CANNOT EAT FOREVER!),
         # SO THE ANIMATION MUST STOP
         # WHY 69 HERE? THERE ARE 7 EATING FRAMES, BUT EACH EATING FRAMES TAKES 10 GAME FRAMES TO BE RENDERED (SEE
@@ -124,12 +122,6 @@ class Player:
             if self.eat_counter.countdown():
                 self.eat_counter.reset()
                 self.state_mngr.state = "normal"
-
-        # if self.eat_counter > 0:
-        #     self.state_mngr.state = "eat"
-        #     if self.eat_counter == 69:
-        #         self.eat_counter = 0
-        #         self.state_mngr.state = "normal"
 
     # PART OF MOVE
     def key_cleared(self):

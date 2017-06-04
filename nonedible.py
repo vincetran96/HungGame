@@ -14,15 +14,20 @@ class NonEdible:
         self.active = True
         self.position = Point()
         self.state_mngr = ObjectState("non_edible")
-        self.renderer = InfiniAnimation("resources/non_edible/", self.state_mngr)
-        self.sfx_mixer = None
         self.constraints = None
-        self.direction_x = random.choice((-5,0,5))
-        self.direction_y = 5
         self.ground_hit = 0
-        self.box_collider = BoxCollider(self.position, self.renderer.width, self.renderer.height)
+
+
+class Fruit(NonEdible):
+    def __init__(self):
+        NonEdible.__init__(self)
+        self.renderer = InfiniAnimation("resources/fruit/", self.state_mngr)
+        self.sfx_mixer = None
+        self.direction_x = random.choice ((-5, 0, 5))
+        self.direction_y = 5
+        self.box_collider = BoxCollider (self.position, self.renderer.width, self.renderer.height)
         physics.add_fruits (self)
-        game_manager.add(self)
+        game_manager.add (self)
 
     def run(self):
         self.position.add_up(self.direction_x, self.direction_y)

@@ -12,16 +12,19 @@ from sfx_mixer import *
 from trap import *
 from lion import *
 
+
 def init_pygame():
     pygame.init()
     screen = pygame.display.set_mode((800, 600))
     pygame.display.set_caption("Hung Game")
     return screen
 
+
 def run():
     game_manager.run()
     physics.check_hit_wall()
     physics.check_hit_ground()
+
 
 def mix():
     game_manager.mix()
