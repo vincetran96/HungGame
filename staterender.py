@@ -32,9 +32,9 @@ class StateRender:
         egami = pygame.transform.flip(image, True, False)
 
         if self.flipped == False:
-            screen.blit(image, (position.x - self.width / 2, position.y - self.height / 2))
+            screen.blit(image, (position.x, position.y))
         else:
-            screen.blit(egami, (position.x - self.width / 2, position.y - self.height / 2))
+            screen.blit(egami, (position.x , position.y))
 
         max_frames = len(frames) - 1
         self.counter += 1

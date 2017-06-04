@@ -22,7 +22,7 @@ class Player:
         self.active = True
         self.position.x = 200
         self.position.y = GROUND_y - self.renderer.height
-        self.box_collider = BoxCollider(self.position, 90, 10)
+        self.box_collider = BoxCollider(self.position, self.renderer.width, 10)
         self.eat_counter = settings.Counter(120)      # ABOUT 2-frames DELAY, SO FROM 69 TO 120,......,
         self.roll_counter = settings.Counter(100)
         self.move_disabled = False
@@ -35,13 +35,14 @@ class Player:
 
     def check(self):
         something = physics.check_contact(self.box_collider)
-        if something is not None and type(something) is Bird:
+        if something is not None and NonEdible in inspect.getmro(type(something)):
+            print ("EATEN")
             something.active = False
             self.score -= 10
             print("Your Score is {}".format(self.score))
 
 
-        if something is not None and type(something) is Edible:
+        if something is not None and Edible in inspect.getmro(type(something)):
             # self.eat_counter += 1
             # OLD WAY OF MAKING EAT ANIMATION
             self.state_mngr.state = "eat"
@@ -100,8 +101,10 @@ class Player:
     def roll(self):
         if input_manager.space_pressed:
             self.roll_counter.countdown()
-            self.position.y = 530                       # THIS WILL BE REMOVED LATER AS RESIZED IMAGE IS AVAILABLE
-            # self.box_collider.position.y = 530        # THIS WILL BE ADDED LATER AS RESIZED IMAGE IS AVAILABLE
+            self.position.y = GROUND_y - self.renderer.height
+            # THIS WILL BE REMOVED LATER AS RESIZED IMAGE IS AVAILABLE
+            # THIS WILL BE ADDED LATER AS RESIZED IMAGE IS AVAILABLE
+            # self.box_collider.position.y = 530
             if self.roll_counter.countdown():
                 self.state_mngr.state = "roll"
             else:
@@ -111,7 +114,7 @@ class Player:
                     input_manager.space_play = False
         if not input_manager.space_pressed:
             self.roll_counter.reset()
-            self.position.y = 500
+            self.position.y = GROUND_y - self.renderer.height
 
     # PART OF MOVE
     def eat(self):
@@ -131,13 +134,13 @@ class Player:
             if self.state_mngr.state != "eat":
                 self.renderer.staterender.state = "normal"
                 self.state_mngr.state = self.state_mngr.states[0]
-                self.position.y = 500
+                self.position.y = GROUND_y - self.renderer.height
 
     # PART OF MOVE
     def release_move(self):
         if self.move_disabled:
             self.state_mngr.state = "trap"
-            self.position.y = 550
+            self.position.y = GROUND_y - self.renderer.height
 
             if input_manager.left_pressed:
                 self.renderer.staterender.flipped = True

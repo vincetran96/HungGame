@@ -1,4 +1,5 @@
 import pygame
+import inspect
 from point import *
 from renderer import *
 from gamemanager import *
@@ -43,8 +44,6 @@ class Ant(Edible):
 
     def run(self):
         self.position.add_up(self.direction_x, self.direction_y)
-        print(self.position.x)
-
         if self.position.y >= 600:
             self.active = False
 

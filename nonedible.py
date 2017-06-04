@@ -1,4 +1,5 @@
 import pygame
+import inspect
 from point import *
 from renderer import *
 from gamemanager import *
