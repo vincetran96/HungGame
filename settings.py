@@ -18,7 +18,6 @@ class Counter:
 
 
 
-
 # game options/settings
 TITLE = "Hứng game"
 WIDTH = 800
