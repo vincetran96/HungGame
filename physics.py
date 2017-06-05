@@ -1,5 +1,7 @@
 import math
 from settings import *
+from gamemanager import *
+
 
 class Physics:
     def __init__(self):

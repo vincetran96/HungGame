@@ -1,4 +1,5 @@
 import pygame
+import inspect
 from point import *
 from renderer import *
 from gamemanager import *
@@ -49,6 +50,7 @@ class Fruit(NonEdible):
 class Bird(NonEdible):
     def __init__(self):
         NonEdible.__init__ (self)
+        #self.__bases__ = (NonEdible)
         self.renderer = InfiniAnimation ("resources/bird/", self.state_mngr)
         self.position.x = random.randrange (50, 750)
         self.sfx_mixer = None
@@ -76,6 +78,7 @@ class Bird(NonEdible):
 class Turtle(NonEdible):
     def __init__(self):
         NonEdible.__init__ (self)
+        #self.__bases__ = (NonEdible)
         self.renderer = InfiniAnimation ("resources/turtle/", self.state_mngr)
         self.sfx_mixer = None
         self.direction_x = random.choice ((-5, 0, 5))

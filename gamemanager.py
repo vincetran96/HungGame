@@ -7,6 +7,9 @@ class GameManager:
     def add(self, game_object):
         self.game_objects.append(game_object)
 
+    def add_missed(self, game_object):
+        self.missed_edible.append(game_object)
+
     def run(self):
         for game_object in self.game_objects:
             if game_object.active:

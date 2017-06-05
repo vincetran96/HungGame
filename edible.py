@@ -1,4 +1,5 @@
 import pygame
+import inspect
 from point import *
 from renderer import *
 from gamemanager import *
@@ -42,8 +43,25 @@ class Ant(Edible):
 
     def run(self):
         self.position.add_up(self.direction_x, self.direction_y)
-
         if self.position.y >= 600:
             self.active = False
+        self.flip()
 
+
+class Fly(Edible):
+    def __init__(self):
+        Edible.__init__(self)
+        self.renderer = InfiniAnimation("resources/fly/", self.state_mngr)
+        self.position.x = random.randrange(50, WIDTH-50)
+        self.sfx_mixer = None
+        self.direction_x = random.choice((-5, 0, 5))
+        self.direction_y = 5
+        self.box_collider = BoxCollider (self.position, self.renderer.width, self.renderer.height)
+        physics.add_fruits (self)
+        game_manager.add (self)
+
+    def run(self):
+        self.position.add_up(self.direction_x, self.direction_y)
+        if self.position.y >= 600:
+            self.active = False
         self.flip()

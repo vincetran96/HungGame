@@ -22,7 +22,7 @@ class Lion:
         self.constraints = None
         self.box_collider = BoxCollider (self.position, self.renderer.width, self.renderer.height)
         self.atk_counter = settings.Counter(240)
-        self.atk_time = 240
+        self.atk_time = 260
         physics.add(self)
 
     def run(self):
@@ -34,19 +34,19 @@ class Lion:
             self.atk_time -= 1
             if self.atk_time < 0:                               # FINISH ATTACKING
                 self.state_mngr.state = "normal"
-                self.atk_time = 240
+                self.atk_time = 260
                 self.atk_counter.reset()
 
     # PART OF RUN
     def attack(self):
-        if self.atk_time in range(120,240):
+        if self.atk_time in range(130, 260):
             self.state_mngr.state = "attack"
-            self.position.add_up(7, 0)
+            self.position.add_up(3, 0)
 
     def retreat(self):
-        if self.atk_time in range(0, 120):
+        if self.atk_time in range(0, 130):
             self.state_mngr.state = "retreat"
-            self.position.add_up(-7, 0)
+            self.position.add_up(-3, 0)
 
     # THIS IS NOT WORKING BECAUSE Player IS NOT IN Physic's game_objects
     def check_hit(self):
