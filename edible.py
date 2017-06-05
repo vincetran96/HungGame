@@ -37,7 +37,7 @@ class Ant(Edible):
         self.sfx_mixer = None
         self.direction_x = ((self.position.x - WIDTH / 2) / abs(self.position.x - WIDTH / 2)) * -5
         self.direction_y = 0
-        self.box_collider = BoxCollider (self.position, self.renderer.width, self.renderer.height)
+        self.box_collider = BoxCollider (self.position, 2*self.renderer.width, 2*self.renderer.height)
         physics.add_fruits (self)
         game_manager.add (self)
 
