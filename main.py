@@ -61,13 +61,13 @@ while playing:
     input_manager.run(events)
     i += 1
     if i % 90 == 0:
-        non_edible = Bird()
-        edible = Fly()
-    if i == 120:
-        lion = Lion ()
-        game_manager.add (lion)
-        # trap = Trap()
-        # trap.position.x = random.randrange (50, 750)
+        #non_edible = Bird()
+        #edible = Fly()
+        trap = Trap ()
+        game_manager.add (trap)
+    # if i == 120:
+    #     lion = Lion ()
+    #     game_manager.add (lion)
 
     ## Update logic
     run()

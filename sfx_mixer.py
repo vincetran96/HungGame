@@ -8,5 +8,5 @@ class SFXMixer:
     def mix(self):
         self.statemixer.mix_state()
 
-    def mix_now(self):
-        self.statemixer.mix_now()
+    def mix_now(self, state_string):
+        self.statemixer.mix_now(state_string)

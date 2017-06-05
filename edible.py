@@ -42,10 +42,11 @@ class Ant(Edible):
         game_manager.add (self)
 
     def run(self):
-        self.position.add_up(self.direction_x, self.direction_y)
-        if self.position.y >= 600:
-            self.active = False
-        self.flip()
+        if self.active:
+            self.position.add_up(self.direction_x, self.direction_y)
+            if self.position.y >= 600:
+                self.active = False
+            self.flip()
 
 
 class Fly(Edible):
@@ -61,7 +62,8 @@ class Fly(Edible):
         game_manager.add (self)
 
     def run(self):
-        self.position.add_up(self.direction_x, self.direction_y)
-        if self.position.y >= 600:
-            self.active = False
-        self.flip()
+        if self.active:
+            self.position.add_up(self.direction_x, self.direction_y)
+            if self.position.y >= 600:
+                self.active = False
+            self.flip()

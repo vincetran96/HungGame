@@ -24,3 +24,10 @@ class Point:
     def set_pos(self, x, y):
         self.x = x
         self.y = y
+
+    def duplicate(self):
+        duplication = Point()
+        duplication.x = self.x
+        duplication.y = self.y
+
+        return duplication

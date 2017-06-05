@@ -57,9 +57,10 @@ class Player:
 
             self.sfx_mixer.mix_now()
             something.active = False
-        if something is not None and type(something) is Trap:
+        if something is not None and type(something) is Trap and not self.move_disabled:
+            print("TRAP!")
             self.move_disabled = True
-            self.sfx_mixer.mix_now()
+            self.sfx_mixer.mix_now("trap")
             self.move_counter = settings.Counter(240)
 
 

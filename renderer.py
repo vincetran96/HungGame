@@ -13,9 +13,9 @@ class SpriteRenderer:
         width = self.image.get_width()
         height = self.image.get_height()
         if self.flipped == False:
-            screen.blit(self.image, (position.x - width / 2, position.y - height / 2))
+            screen.blit(self.image, (position.x, position.y))
         else:
-            screen.blit(egami, (position.x - width / 2, position.y - height / 2))
+            screen.blit(egami, (position.x, position.y))
 
 def loadSpriteRenderer(path):
     return SpriteRenderer(pygame.image.load(path))
