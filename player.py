@@ -62,8 +62,6 @@ class Player:
             self.sfx_mixer.mix_now()
             self.move_counter = settings.Counter(240)
 
-
-
     def move(self):
         if not self.move_disabled:
             self.rightleft()
@@ -83,7 +81,7 @@ class Player:
             if input_manager.space_pressed:
                 self.position.add_up(1, 0)
             else:
-                self.position.add_up(5, 0)
+                self.position.add_up(10, 0)
             if not input_manager.right_pressed:
                 self.state_mngr.state = "normal"
 
@@ -93,7 +91,7 @@ class Player:
             if input_manager.space_pressed:
                 self.position.add_up(-1, 0)
             else:
-                self.position.add_up(-5, 0)
+                self.position.add_up(-10, 0)
             if not input_manager.left_pressed:
                 self.state_mngr.state = "normal"
 
