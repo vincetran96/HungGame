@@ -11,6 +11,7 @@ from object_state import ObjectState
 from settings import *
 # from player import Player
 
+
 class NonEdible:
     def __init__(self):
         self.active = True

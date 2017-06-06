@@ -60,14 +60,14 @@ while playing:
 
     input_manager.run(events)
     i += 1
-    if i % 90 == 0:
-        #non_edible = Bird()
-        #edible = Fly()
-        trap = Trap ()
+    if i % 120 == 0:
+        non_edible_fruit, non_edible_bird = Fruit(), Bird()
+        edible = Fly()
+        trap = Trap()
         game_manager.add (trap)
-    # if i == 120:
-    #     lion = Lion ()
-    #     game_manager.add (lion)
+    if i == 120:
+        lion = Lion ()
+        game_manager.add (lion)
 
     ## Update logic
     run()

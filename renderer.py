@@ -5,11 +5,13 @@ class SpriteRenderer:
     def __init__(self, image):
         self.flipped = False
         self.image = image
+        #self.image.set_colorkey ((255, 255, 255))
         self.width = self.image.get_width()
         self.height = self.image.get_height()
 
     def draw(self, screen, position):
         egami = pygame.transform.flip(self.image, True, False)
+        #egami.set_colorkey((0,0,0))
         width = self.image.get_width()
         height = self.image.get_height()
         if self.flipped == False:

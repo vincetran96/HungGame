@@ -18,7 +18,8 @@ class Trap:
         self.position = Point()
         self.position.x = random.randrange(50, 750)
         self.state_mngr = ObjectState ("trap")
-        self.renderer = InfiniAnimation("resources/trap/", self.state_mngr)
+        self.renderer = loadSpriteRenderer("resources/trap/normal.png")
+
         self.sfx_mixer = None
         self.constraints = None
         self.direction_x = random.choice ((-2, 0, 2))
@@ -43,6 +44,6 @@ class Trap:
     # PART OF RUN
     def flip(self):
         if self.direction_x < 0:
-            self.renderer.staterender.flipped = True
+            self.renderer.flipped = True
         if self.direction_x > 0:
-            self.renderer.staterender.flipped = False
+            self.renderer.flipped = False
