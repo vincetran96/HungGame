@@ -26,7 +26,7 @@ class NonEdible:
 class Fruit(NonEdible):
     def __init__(self):
         NonEdible.__init__(self)
-        self.renderer = InfiniAnimation("resources/fruit/", self.state_mngr)
+        self.renderer = loadSpriteRenderer("resources/fruit/normal.png")
         self.position.x = random.randrange (50, 750)
         self.sfx_mixer = None
         self.vel.x = random.choice ((-5, 0, 5))
@@ -45,9 +45,9 @@ class Fruit(NonEdible):
     # PART OF RUN
     def flip(self):
         if self.vel.x < 0:
-            self.renderer.staterender.flipped = True
+            self.renderer.flipped = True
         if self.vel.y > 0:
-            self.renderer.staterender.flipped = False
+            self.renderer.flipped = False
 
 
 class Bird(NonEdible):
