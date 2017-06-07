@@ -5,7 +5,7 @@ from sfx_mixer import *
 from inputmanager import *
 import settings
 from object_state import ObjectState
-from nonedible import *
+from things_from_sky import *
 from edible import *
 from health_bar import *
 from trap import *
@@ -24,7 +24,7 @@ class Player:
         self.active = True
         self.position.x = 200
         self.position.y = GROUND_y - self.renderer.height
-        self.box_collider = BoxCollider(self.position, self.renderer.width, 10)
+        self.box_collider = BoxCollider(self.position, self.renderer.width, 20)
         self.eat_counter = settings.Counter(120)      # ABOUT 2-frames DELAY, SO FROM 69 TO 120,......,
         self.roll_counter = settings.Counter(100)
         self.move_disabled = False
@@ -44,7 +44,6 @@ class Player:
         if something is not None and NonEdible in inspect.getmro(type(something)):
             something.active = False
             self.score -= 10
-            print("Your Score is {}".format(self.score))
 
         if something is not None and Edible in inspect.getmro(type(something)):
             # self.eat_counter += 1
@@ -52,11 +51,10 @@ class Player:
             self.state_mngr.state = "eat"
             self.sfx_mixer.mix_now("eat")
             something.active = False
-            self.score += 10
-            something.active = False
+            self.score += 100
 
         if something is not None and type(something) is Trap and not self.move_disabled:
-            self.move_disabled = True
+            # self.move_disabled = True
             #self.state_mngr.state = "trap"
             self.sfx_mixer.mix_now("trap")
             self.move_counter = settings.Counter(240)

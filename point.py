@@ -7,14 +7,10 @@ class Point:
         self.x += dx
         self.y += dy
 
-    def Print(self):
-        print("{0}, {1}".format(self.x, self.y))
-
     def add(self, dx, dy):
         p = Point()
         p.x = self.x + dx
         p.y = self.y + dy
-
         return p
 
     def copy(self, other):

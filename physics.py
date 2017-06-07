@@ -35,34 +35,14 @@ class Physics:
 
     def check_hit_ground(self):
         for fruit in self.fruits:
-            if fruit.ground_hit == 0 and fruit.position.y >= GROUND_y -32 :
-                fruit.ground_hit += 1
-                fruit.vel.x *= 1
-                fruit.vel.y *= -0.7
-            # if fruit.ground_hit == 0 and fruit.position.y >= GROUND_y - 32:
-            #     fruit.vel.y *= -1
-            #     fruit.acc.y = 3
-            #     fruit.vel.add_up(0, fruit.acc.y)
-            #     fruit.position.add_up(fruit.vel.x, fruit.vel.y + 0.5 * fruit.acc.y)
+            if fruit.position.y >= GROUND_y - fruit.renderer.height:
+                fruit.ground_hit +=1
+                fruit.vel.y *= -0.9
+                fruit.vel.x *= 0.5
+                fruit.acc.y = GRAVITY * 0.022
+        # tăng thử lên tí, eg: 0.025 => lỗi biến cmn mất????
 
-            if fruit.ground_hit == 1 and fruit.position.y <= GROUND_y - 50 -32 :
-                fruit.ground_hit += 1
-                fruit.vel.x *= 1
-                fruit.vel.y *= -0.7
-
-            if fruit.ground_hit == 2 and fruit.position.y >= GROUND_y -32:
-                fruit.ground_hit += 1
-                fruit.vel.x *= 0.8
-                fruit.vel.y *= -1
-
-            if fruit.ground_hit == 3 and fruit.position.y <= GROUND_y - 30 -32 :
-                fruit.ground_hit += 1
-                fruit.vel.x *= 0.8
-                fruit.vel.y *= -1
-
-            if fruit.ground_hit == 4 and fruit.position.y >= GROUND_y -32:
-                fruit.vel.x = 0
-                fruit.vel.y = 0
+            if fruit.ground_hit == 10:
                 fruit.active = False
 
 physics = Physics()

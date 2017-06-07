@@ -5,7 +5,7 @@ from player import *
 from background import *
 from constraints import *
 from edible import *
-from nonedible import *
+from things_from_sky import *
 import random
 from physics import *
 from sfx_mixer import *
@@ -27,17 +27,12 @@ def run():
     game_manager.run()
     physics.check_hit_wall()
     physics.check_hit_ground()
-
 def mix():
     game_manager.mix()
 
 def draw_screen(screen):
     screen.fill((0, 0, 0))
     game_manager.draw(screen)
-
-def check_lose():
-    if player.missed_edibles >= 10:
-        print ("NOOB")
 
 screen = init_pygame()
 clock = pygame.time.Clock()
@@ -60,12 +55,12 @@ while playing:
 
     input_manager.run(events)
     i += 1
-    if i % 120 == 0:
+    if i % 150 == 0:
         non_edible_fruit, non_edible_bird = Fruit(), Bird()
         edible = Fly()
         trap = Trap()
         game_manager.add (trap)
-    if i == 120:
+    if i == 150:
         lion = Lion ()
         game_manager.add (lion)
 

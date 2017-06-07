@@ -16,8 +16,6 @@ class Counter:
     def reset(self):
         self.counter = self.time
 
-
-
 # game options/settings
 TITLE = "Hứng game"
 WIDTH = 800
@@ -27,9 +25,9 @@ FONT_NAME = 'arial'
 GROUND_y = 530
 
 # Player properties
-PLAYER_ACC = 0.7
+PLAYER_ACC = 0.9
 PLAYER_FRICTION = -0.12
-GRAVITY = 0.8
+GRAVITY = 10
 PLAYER_JUMP = 20
 
 # define colors
@@ -37,9 +35,7 @@ WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
-BLUE = (0, 0, 255)
-YELLOW = (255, 255, 0)
-LIGHTBLUE = (0, 155, 155)
+
 
 def draw_text( screen, text, size, color, x, y): #For score and player's status
     font_name = pygame.font.match_font(FONT_NAME)
@@ -48,3 +44,7 @@ def draw_text( screen, text, size, color, x, y): #For score and player's status
     text_rect = text_surface.get_rect()
     text_rect.midtop = (x, y)
     screen.blit(text_surface, text_rect)
+
+def check_lose():
+    if player.missed_edibles >= 10:
+        print ("NOOB")

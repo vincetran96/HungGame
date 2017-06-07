@@ -27,6 +27,4 @@ class GameManager:
             if game_object.active and game_object.sfx_mixer is not None:
                 game_object.sfx_mixer.mix()
 
-
-
 game_manager = GameManager()
