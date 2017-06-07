@@ -15,6 +15,8 @@ from settings import *
 class Player:
     def __init__(self):
         self.position = Point()
+        self.vel = Point()
+        self.acc = Point()
         self.state_mngr = ObjectState("player")
         self.renderer = InfiniAnimation("resources/player/", self.state_mngr)
         self.sfx_mixer = SFXMixer("resources/player/", self.state_mngr)
@@ -92,7 +94,12 @@ class Player:
             if input_manager.space_pressed:
                 self.position.add_up(1, 0)
             else:
-                self.position.add_up(10, 0)
+                self.acc.x = PLAYER_ACC
+                self.acc.add_up(self.vel.x * PLAYER_FRICTION,
+                                self.vel.y * PLAYER_FRICTION)
+                self.vel.add_up(self.acc.x, self.acc.y)
+                self.position.add_up(self.vel.x + 0.5 * self.acc.x,
+                                     self.vel.y + 0.5 * self.acc.y)
             if not input_manager.right_pressed:
                 self.state_mngr.state = "normal"
 
@@ -101,9 +108,16 @@ class Player:
             if input_manager.space_pressed:
                 self.position.add_up(-1, 0)
             else:
-                self.position.add_up(-10, 0)
+                self.acc.x = -PLAYER_ACC
+                self.acc.add_up(self.vel.x * PLAYER_FRICTION,
+                                self.vel.y * PLAYER_FRICTION)
+                self.vel.add_up(self.acc.x, self.acc.y)
+                self.position.add_up(self.vel.x + 0.5 * self.acc.x,
+                                     self.vel.y + 0.5 * self.acc.y)
             if not input_manager.left_pressed:
                 self.state_mngr.state = "normal"
+
+
 
     # PART OF MOVE
     def roll(self):

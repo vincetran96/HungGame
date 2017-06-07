@@ -31,33 +31,39 @@ class Physics:
     def check_hit_wall(self):
         for fruit in self.fruits:
             if fruit.position.x <= 0 or fruit.position.x >= WIDTH:
-                fruit.direction_x *= -1
+                fruit.vel.x *= -1
 
     def check_hit_ground(self):
         for fruit in self.fruits:
             if fruit.ground_hit == 0 and fruit.position.y >= GROUND_y -32 :
                 fruit.ground_hit += 1
-                fruit.direction_x *= 1
-                fruit.direction_y *= -0.7
+                fruit.vel.x *= 1
+                fruit.vel.y *= -0.7
+            # if fruit.ground_hit == 0 and fruit.position.y >= GROUND_y - 32:
+            #     fruit.vel.y *= -1
+            #     fruit.acc.y = 3
+            #     fruit.vel.add_up(0, fruit.acc.y)
+            #     fruit.position.add_up(fruit.vel.x, fruit.vel.y + 0.5 * fruit.acc.y)
 
             if fruit.ground_hit == 1 and fruit.position.y <= GROUND_y - 50 -32 :
                 fruit.ground_hit += 1
-                fruit.direction_x *= 1
-                fruit.direction_y *= -0.7
+                fruit.vel.x *= 1
+                fruit.vel.y *= -0.7
 
             if fruit.ground_hit == 2 and fruit.position.y >= GROUND_y -32:
                 fruit.ground_hit += 1
-                fruit.direction_x *= 0.8
-                fruit.direction_y *= -1
+                fruit.vel.x *= 0.8
+                fruit.vel.y *= -1
 
             if fruit.ground_hit == 3 and fruit.position.y <= GROUND_y - 30 -32 :
                 fruit.ground_hit += 1
-                fruit.direction_x *= 0.8
-                fruit.direction_y *= -1
+                fruit.vel.x *= 0.8
+                fruit.vel.y *= -1
 
             if fruit.ground_hit == 4 and fruit.position.y >= GROUND_y -32:
-                fruit.direction_x = 0
-                fruit.direction_y = 0
+                fruit.vel.x = 0
+                fruit.vel.y = 0
                 fruit.active = False
 
 physics = Physics()
+
