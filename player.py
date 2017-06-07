@@ -35,7 +35,7 @@ class Player:
         self.move()
         self.eat()
         self.key_cleared ()
-        self.flip ()
+        self.flip()
 
     def check(self):
         something = physics.check_contact(self.box_collider)
@@ -54,8 +54,8 @@ class Player:
             something.active = False
 
         if something is not None and type(something) is Trap and not self.move_disabled:
-            print("TRAP!")
             self.move_disabled = True
+            #self.state_mngr.state = "trap"
             self.sfx_mixer.mix_now("trap")
             self.move_counter = settings.Counter(240)
 
@@ -122,21 +122,20 @@ class Player:
                     input_manager.space_play = False
         if not input_manager.space_pressed:
             self.roll_counter.reset()
-            self.position.y = GROUND_y - self.renderer.height
+            #self.position.y = GROUND_y - self.renderer.height
 
     # PART OF MOVE
     def key_cleared(self):
         if input_manager.all_key_cleared:
-            if self.state_mngr.state != "eat":
-                self.renderer.staterender.state = "normal"
+            if self.state_mngr.state not in ["trap", "eat"]:
                 self.state_mngr.state = self.state_mngr.states[0]
-                self.position.y = GROUND_y - self.renderer.height
+                #self.position.y = GROUND_y - self.renderer.height
 
     # PART OF MOVE
     def release_move(self):
         if self.move_disabled:
+            #print ("disabled")
             self.state_mngr.state = "trap"
-            self.position.y = GROUND_y - self.renderer.height
 
             self.move_counter.countdown()
             if self.move_counter.countdown():

@@ -23,7 +23,7 @@ class Trap:
         self.sfx_mixer = None
         self.constraints = None
         self.direction_x = random.choice ((-2, 0, 2))
-        self.direction_y = 1
+        self.direction_y = 3
         self.ground_hit = 0
         self.box_collider = BoxCollider(self.position.add(103, 72), 140, 80)
         physics.add_traps(self)
