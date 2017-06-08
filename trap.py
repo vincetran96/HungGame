@@ -18,7 +18,7 @@ class Trap:
         self.position = Point()
         self.position.x = random.randrange(50, 750)
         self.state_mngr = ObjectState ("trap")
-        self.renderer = loadSpriteRenderer("resources/trap/normal.png")
+        self.renderer = loadSpriteRenderer("resources/trap/normal.png", flip_path="resources/trap/flip_normal.png")
 
         self.sfx_mixer = None
         self.constraints = None
