@@ -60,9 +60,9 @@ while playing:
         #non_edible_fruit = Fruit()
         edible = Fly()
         trap = Trap()
-    if i == 150:
-        lion = Lion()
-        game_manager.add(lion)
+    # if i == 150:
+    #     lion = Lion()
+    #     game_manager.add(lion)
 
     ## Update logic
     run()

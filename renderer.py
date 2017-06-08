@@ -60,7 +60,6 @@ class StateRender:
         current_state = self.render_state_mngr.state
 
         if self.last_state != current_state:
-            print(current_state)
             self.image_index = 0
 
         if not self.flipped:

@@ -29,7 +29,6 @@ class Player:
         self.move_disabled = False
         self.score = 0
         self.missed_edibles = 0
-        #physics.add(self) # NO NEED TO ADD self
 
     def run(self):
         self.check()
@@ -45,8 +44,6 @@ class Player:
             self.score -= 10
 
         if something is not None and Edible in inspect.getmro(type(something)):
-            # self.eat_counter += 1
-            # OLD WAY OF MAKING EAT ANIMATION
             self.state_mngr.state = "eat"
             self.sfx_mixer.mix_now("eat")
             something.active = False
@@ -57,6 +54,7 @@ class Player:
             self.state_mngr.state = "trap"
             self.sfx_mixer.mix_now("trap")
             self.move_counter = settings.Counter(240)
+            something.begin_root = True
 
     def flip(self):
         if input_manager.right_pressed:
@@ -67,9 +65,9 @@ class Player:
     def eat(self):
         if self.state_mngr.state == "eat":
             self.eat_counter.countdown ()
-            # IN key_cleared CONDITION, TETE CAN ONLY SPEND 5 OR 6 FRAMES FOR EATING (HE CANNOT EAT FOREVER!),
+            # IN key_cleared CONDITION, TETE CAN ONLY SPEND 3 IMAGE-FRAMES FOR EATING (HE CANNOT EAT FOREVER!),
             # SO THE ANIMATION MUST STOP
-            # WHY 69 HERE? THERE ARE 7 EATING FRAMES, BUT EACH EATING FRAMES TAKES 10 GAME FRAMES TO BE RENDERED (SEE
+            # THERE ARE 3 EATING FRAMES, BUT EACH EATING FRAMES TAKES 10 GAME FRAMES TO BE RENDERED (SEE
             # staterender MODULE)
             if self.eat_counter.countdown ():
                 self.eat_counter.reset ()
@@ -114,13 +112,10 @@ class Player:
             if not input_manager.left_pressed:
                 self.state_mngr.state = "normal"
 
-
-
     # PART OF MOVE
     def roll(self):
         if input_manager.space_pressed:
             self.roll_counter.countdown()
-            self.position.y = GROUND_y - self.renderer.height
             # THIS WILL BE REMOVED LATER AS RESIZED IMAGE IS AVAILABLE
             # THIS WILL BE ADDED LATER AS RESIZED IMAGE IS AVAILABLE
             # self.box_collider.position.y = 530
@@ -133,14 +128,12 @@ class Player:
                     input_manager.space_play = False
         if not input_manager.space_pressed:
             self.roll_counter.reset()
-            #self.position.y = GROUND_y - self.renderer.height
 
     # PART OF MOVE
     def key_cleared(self):
         if input_manager.all_key_cleared:
             if self.state_mngr.state not in ["trap", "eat"]:
                 self.state_mngr.state = self.state_mngr.states[0]
-                #self.position.y = GROUND_y - self.renderer.height
 
     # PART OF MOVE
     def release_move(self):
