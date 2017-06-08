@@ -11,6 +11,7 @@ from object_state import ObjectState
 from settings import *
 # from player import Player
 
+
 class Things_from_sky:
     def __init__(self):
         self.active = True
@@ -35,40 +36,58 @@ class Things_from_sky:
             #     self.active = False
             self.flip()
 
-    # PART OF RUN
-    def flip(self):
-        if self.vel.x < 0:
-            self.renderer.staterender.flipped = True
-        if self.vel.y > 0:
-            self.renderer.staterender.flipped = False
 
-
-#EDIBLE
+# EDIBLE
 class Edible(Things_from_sky):
     def __init__(self):
         Things_from_sky.__init__(self)
         self.state_mngr = ObjectState("edible")
+
+    def flip(self):
+        if self.vel.x < 0:
+            self.renderer.staterender.flipped = True
+        if self.vel.x > 0:
+            self.renderer.staterender.flipped = False
+
+
 class Fly(Edible):
     def __init__(self):
         Edible.__init__(self)
         self.renderer = InfiniAnimation("resources/fly/", self.state_mngr)
         self.box_collider = BoxCollider(self.position, self.renderer.width, self.renderer.height)
 
-#NON EDIBLE
+
+# NON EDIBLE
 class NonEdible(Things_from_sky):
     def __init__(self):
         Things_from_sky.__init__(self)
         self.state_mngr = ObjectState("non_edible")
+
+
 class Fruit(NonEdible):
     def __init__(self):
         NonEdible.__init__(self)
-        self.renderer = InfiniAnimation("resources/fruit/", self.state_mngr)
+        self.renderer = loadSpriteRenderer("resources/fruit/normal.png", flip_path="resources/fruit/flip_normal.png")
         self.box_collider = BoxCollider(self.position, self.renderer.width, self.renderer.height)
+
+    def flip(self):
+        if self.vel.x < 0:
+            self.renderer.flipped = True
+        if self.vel.x > 0:
+            self.renderer.flipped = False
+
+
 class Bird(NonEdible):
     def __init__(self):
         NonEdible.__init__ (self)
         self.renderer = InfiniAnimation ("resources/bird/", self.state_mngr)
         self.box_collider = BoxCollider(self.position, self.renderer.width, self.renderer.height)
+
+    def flip(self):
+        if self.vel.x < 0:
+            self.renderer.staterender.flipped = True
+        if self.vel.x > 0:
+            self.renderer.staterender.flipped = False
 
 # class Turtle(NonEdible):
 #     def __init__(self):

@@ -4,7 +4,6 @@ from gamemanager import *
 from player import *
 from background import *
 from constraints import *
-from edible import *
 from things_from_sky import *
 import random
 from physics import *
@@ -12,6 +11,7 @@ from sfx_mixer import *
 from trap import *
 from lion import *
 from settings import *
+
 
 def init_pygame():
     pygame.init()
@@ -56,13 +56,13 @@ while playing:
     input_manager.run(events)
     i += 1
     if i % 150 == 0:
-        non_edible_fruit, non_edible_bird = Fruit(), Bird()
-        edible = Fly()
-        trap = Trap()
-        game_manager.add (trap)
-    if i == 150:
-        lion = Lion ()
-        game_manager.add (lion)
+        non_edible_bird = Bird()
+        non_edible_fruit = Fruit()
+        # edible = Fly()
+        # trap = Trap()
+    # if i == 150:
+    #     lion = Lion()
+    #     game_manager.add(lion)
 
     ## Update logic
     run()

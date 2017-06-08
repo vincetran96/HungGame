@@ -1,26 +1,28 @@
 import pygame
 from glob import glob
+from settings import *
+
 
 class SpriteRenderer:
-    def __init__(self, image):
+    def __init__(self, image, flip_image):
         self.flipped = False
         self.image = image
-        #self.image.set_colorkey ((255, 255, 255))
+        self.flip_image = flip_image
         self.width = self.image.get_width()
         self.height = self.image.get_height()
 
     def draw(self, screen, position):
-        egami = pygame.transform.flip(self.image, True, False)
-        #egami.set_colorkey((0,0,0))
-        width = self.image.get_width()
-        height = self.image.get_height()
-        if self.flipped == False:
+        if not self.flipped:
             screen.blit(self.image, (position.x, position.y))
         else:
-            screen.blit(egami, (position.x, position.y))
+            screen.blit(self.flip_image, (position.x, position.y))
 
-def loadSpriteRenderer(path):
-    return SpriteRenderer(pygame.image.load(path))
+
+def loadSpriteRenderer(path, **kwargs):
+    if kwargs:
+        return SpriteRenderer(pygame.image.load(path), pygame.image.load(kwargs.get("flip_path")))
+    else:
+        return SpriteRenderer(pygame.image.load(path), None)
 
 
 class InfiniAnimation:
@@ -42,38 +44,42 @@ class StateRender:
         self.image_dict = {}
         for state in self.render_state_mngr.states:
             paths = sorted(glob(self.path + state + "*.png"))
-            self.image_dict[state] = [ pygame.image.load(path) for path in paths ]
+            flip_paths = sorted((glob(self.path + "flip_" + state + "*.png")))
+            self.image_dict[state]= dict(noflip = [ pygame.image.load(path) for path in paths ], \
+                                         flip = [ pygame.image.load(path) for path in flip_paths ])
 
-        self.width = self.image_dict["normal"][0].get_width()
-        self.height = self.image_dict["normal"][0].get_height()
+        self.width = self.image_dict["normal"]["noflip"][0].get_width()
+        self.height = self.image_dict["normal"]["noflip"][0].get_height()
         self.flipped = False
         self.image_index = 0
-        self.counter = 0
+        self.counter = Counter(20)
         self.last_state = None
-
 
     # FUNCTION FOR DRAWING A PARTICULAR STATE
     def draw_state(self, screen, position):
         current_state = self.render_state_mngr.state
-        frames = self.image_dict[current_state]
 
         if self.last_state != current_state:
+            print(current_state)
             self.image_index = 0
 
-        image = frames[self.image_index]
-        egami = pygame.transform.flip(image, True, False)
-
-        if self.flipped == False:
-            screen.blit(image, (position.x, position.y))
+        if not self.flipped:
+            screen.blit(self.image_dict[current_state]["noflip"][self.image_index], (position.x, position.y))
         else:
-            screen.blit(egami, (position.x , position.y))
+            screen.blit(self.image_dict[current_state]["flip"][self.image_index], (position.x , position.y))
 
-        max_frames = len(frames) - 1
-        self.counter += 1
-        # SLOW IT DOWN 10 TIMES
-        if self.counter == 9:
-            self.counter = 0
-            self.image_index = (self.image_index + 1) % (max_frames + 1)
+        max_frames = len(self.image_dict[current_state]["noflip"])
+
+        # SLOW IT DOWN 10 game-frames, BUT THE countdown() method takes 2-frame delay
+        self.counter.countdown()
+        if self.counter.countdown():
+            self.counter.reset()
+            self.image_index = (self.image_index + 1) % (max_frames)
 
         self.last_state = current_state
+
+
+# frames = self.image_dict[current_state]
+# image = frames[self.image_index]
+# egami = pygame.transform.flip(image, True, False)
 

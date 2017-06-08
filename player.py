@@ -6,7 +6,6 @@ from inputmanager import *
 import settings
 from object_state import ObjectState
 from things_from_sky import *
-from edible import *
 from health_bar import *
 from trap import *
 from settings import *
@@ -25,7 +24,7 @@ class Player:
         self.position.x = 200
         self.position.y = GROUND_y - self.renderer.height
         self.box_collider = BoxCollider(self.position, self.renderer.width, 20)
-        self.eat_counter = settings.Counter(120)      # ABOUT 2-frames DELAY, SO FROM 69 TO 120,......,
+        self.eat_counter = settings.Counter(52)      # ABOUT 2-frames DELAY, SO FROM 29 TO 52......
         self.roll_counter = settings.Counter(100)
         self.move_disabled = False
         self.score = 0
@@ -54,8 +53,8 @@ class Player:
             self.score += 100
 
         if something is not None and type(something) is Trap and not self.move_disabled:
-            # self.move_disabled = True
-            #self.state_mngr.state = "trap"
+            self.move_disabled = True
+            self.state_mngr.state = "trap"
             self.sfx_mixer.mix_now("trap")
             self.move_counter = settings.Counter(240)
 
@@ -146,7 +145,6 @@ class Player:
     # PART OF MOVE
     def release_move(self):
         if self.move_disabled:
-            #print ("disabled")
             self.state_mngr.state = "trap"
 
             self.move_counter.countdown()
