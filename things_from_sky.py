@@ -32,8 +32,6 @@ class Things_from_sky:
         if self.active:
             self.vel.add_up(0, self.acc.y)
             self.position.add_up(self.vel.x, self.vel.y + 0.5 * self.acc.y)
-            # if self.position.y >= 600:
-            #     self.active = False
             self.flip()
 
 
@@ -54,7 +52,7 @@ class Fly(Edible):
     def __init__(self):
         Edible.__init__(self)
         self.renderer = InfiniAnimation("resources/fly/", self.state_mngr)
-        self.box_collider = BoxCollider(self.position, self.renderer.width, self.renderer.height)
+        self.box_collider = BoxCollider(self.position, self.renderer.width+30, self.renderer.height+30)
 
 
 # NON EDIBLE

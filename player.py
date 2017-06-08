@@ -23,7 +23,7 @@ class Player:
         self.active = True
         self.position.x = 200
         self.position.y = GROUND_y - self.renderer.height
-        self.box_collider = BoxCollider(self.position, self.renderer.width, 20)
+        self.box_collider = BoxCollider(self.position, self.renderer.width, 50)
         self.eat_counter = settings.Counter(52)      # ABOUT 2-frames DELAY, SO FROM 29 TO 52......
         self.roll_counter = settings.Counter(100)
         self.move_disabled = False

@@ -56,8 +56,8 @@ while playing:
     input_manager.run(events)
     i += 1
     if i % 150 == 0:
-        non_edible_bird = Bird()
-        non_edible_fruit = Fruit()
+        #non_edible_bird = Bird()
+        #non_edible_fruit = Fruit()
         edible = Fly()
         trap = Trap()
     if i == 150:
