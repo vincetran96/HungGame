@@ -67,7 +67,6 @@ class Fruit(NonEdible):
         NonEdible.__init__(self)
         self.renderer = loadSpriteRenderer("resources/fruit/normal.png", flip_path="resources/fruit/flip_normal.png")
         self.box_collider = BoxCollider(self.position, self.renderer.width, self.renderer.height)
-
     def flip(self):
         if self.vel.x < 0:
             self.renderer.flipped = True
@@ -80,21 +79,27 @@ class Bird(NonEdible):
         NonEdible.__init__ (self)
         self.renderer = InfiniAnimation ("resources/bird/", self.state_mngr)
         self.box_collider = BoxCollider(self.position, self.renderer.width, self.renderer.height)
-
     def flip(self):
         if self.vel.x < 0:
             self.renderer.staterender.flipped = True
         if self.vel.x > 0:
             self.renderer.staterender.flipped = False
 
-# class Turtle(NonEdible):
-#     def __init__(self):
-#         NonEdible.__init__ (self)
-#         #self.__bases__ = (NonEdible)
-#         self.renderer = InfiniAnimation ("resources/turtle/", self.state_mngr)
-#         self.sfx_mixer = None
-#         self.direction_x = random.choice ((-5, 0, 5))
-#         self.direction_y = 0
-#         self.box_collider = BoxCollider (self.position, self.renderer.width, self.renderer.height)
-#         physics.add_fruits (self)
-#         game_manager.add (self)
+class Things_from_sky:
+    def __init__(self):
+        self.active = True
+        self.position = Point()
+        self.vel = Point()
+        self.acc = Point()
+        self.sfx_mixer = None
+        self.constraints = None
+        self.ground_hit = 0
+        self.position.x = random.randrange(50, WIDTH - 50)
+        self.vel.x = random.choice((-5, 0, 5))
+        self.vel.y = 3
+        self.acc.y = 0.01995
+        physics.add_fruits(self)
+        game_manager.add(self)
+
+
+# TRAP
