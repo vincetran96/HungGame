@@ -12,7 +12,7 @@ class ObjectState:
         elif object_str == "trap":
             self.states = ["normal"]
         elif object_str == "lion":
-            self.states = ["normal", "attack", "retreat"]
+            self.states = ["normal", "attack", "retreat", "hit"]
 
         # DEFAULT BEGINNING STATE
         self.state = self.states[0]

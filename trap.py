@@ -23,7 +23,7 @@ class Trap:
         self.direction_x = random.choice ((-2, 0, 2))
         self.direction_y = 3
         self.ground_hit = 0
-        self.box_collider = BoxCollider(self.position.add(103, 72), 140, 80)
+        self.box_collider = BoxCollider(self.position.add(105, 72), 120, 37)
         self.root_counter = Counter(240)
         self.begin_root = False
         physics.add_traps(self)

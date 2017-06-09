@@ -8,6 +8,7 @@ from object_state import ObjectState
 from things_from_sky import *
 from health_bar import *
 from trap import *
+from lion import *
 from settings import *
 
 
@@ -55,6 +56,11 @@ class Player:
             self.sfx_mixer.mix_now("trap")
             self.move_counter = settings.Counter(240)
             something.begin_root = True
+
+        if something is not None and type(something) is Lion and self.state_mngr.state not in ["roll", "preroll"]\
+            and something.state_mngr.state == "attack":
+            self.score -= 300
+            something.sfx_mixer.mix_now("hit")
 
     def flip(self):
         if input_manager.right_pressed:
@@ -116,9 +122,6 @@ class Player:
     def roll(self):
         if input_manager.space_pressed:
             self.roll_counter.countdown()
-            # THIS WILL BE REMOVED LATER AS RESIZED IMAGE IS AVAILABLE
-            # THIS WILL BE ADDED LATER AS RESIZED IMAGE IS AVAILABLE
-            # self.box_collider.position.y = 530
             if self.roll_counter.countdown():
                 self.state_mngr.state = "roll"
             else:

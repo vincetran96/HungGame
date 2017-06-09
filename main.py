@@ -23,12 +23,16 @@ pygame.mixer.init()
 pygame.mixer.music.load("resources/music.mp3")
 pygame.mixer.music.play(-1,0.0)
 
+
 def run():
     game_manager.run()
     physics.check_hit_wall()
     physics.check_hit_ground()
+
+
 def mix():
     game_manager.mix()
+
 
 def draw_screen(screen):
     screen.fill((0, 0, 0))
@@ -56,25 +60,25 @@ while playing:
     input_manager.run(events)
     i += 1
     if i % 150 == 0:
-        #non_edible_bird = Bird()
-        #non_edible_fruit = Fruit()
         edible = Fly()
         trap = Trap()
-    # if i == 150:
-    #     lion = Lion()
-    #     game_manager.add(lion)
+    if i % 270 == 0:
+        non_edible_bird = Bird()
+        non_edible_fruit = Fruit()
+    if i == 150:
+        lion = Lion()
 
-    ## Update logic
+    # Update logic
     run()
 
-    ## update graphics
+    # update graphics
     draw_screen(screen)
     draw_text(screen, str(player.score), 40, WHITE, WIDTH/2, 20 )
 
-    ## play sfx
+    # play sfx
     mix()
 
-    ## delay by frame rate
+    # delay by frame rate
     pygame.display.flip()
     clock.tick(FPS)
 
