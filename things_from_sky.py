@@ -85,6 +85,7 @@ class Bird(NonEdible):
         if self.vel.x > 0:
             self.renderer.staterender.flipped = False
 
+
 class Things_from_sky:
     def __init__(self):
         self.active = True

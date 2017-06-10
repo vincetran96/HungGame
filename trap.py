@@ -9,6 +9,7 @@ import random
 from object_state import ObjectState
 from settings import *
 
+
 class Trap:
     def __init__(self):
         self.active = True
@@ -24,9 +25,9 @@ class Trap:
         self.vel.y = 3
         self.ground_hit = 0
         self.box_collider = BoxCollider(self.position.add(105, 72), 120, 37)
-        self.root_counter = Counter(240)
+        self.root_counter = Counter(n_frames=240)
         self.begin_root = False
-        physics.add_traps(self)
+        physics.add(self)
         game_manager.add(self)
 
     def run(self):
@@ -40,7 +41,6 @@ class Trap:
                 self.vel.y, self.vel.x = 0, 0
             if self.root_counter.countdown():
                 self.active = False
-        self.flip ()
 
     def flip(self):
         if self.vel.x < 0:

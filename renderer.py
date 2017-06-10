@@ -52,7 +52,7 @@ class StateRender:
         self.height = self.image_dict["normal"]["noflip"][0].get_height()
         self.flipped = False
         self.image_index = 0
-        self.counter = Counter(20)
+        self.counter = Counter(n_frames=20)
         self.last_state = None
 
     # FUNCTION FOR DRAWING A PARTICULAR STATE

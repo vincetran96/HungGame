@@ -65,8 +65,17 @@ while playing:
     if i % 270 == 0:
         non_edible_bird = Bird()
         non_edible_fruit = Fruit()
-    if i == 150:
-        lion = Lion()
+
+    if level_manager.lion_left == 0:
+        if i % 150 and not level_manager.has_lion:
+            level_manager.reset()
+            lion = Lion()
+            level_manager.has_lion = True
+    else:
+        if i % level_manager.lion_left and not level_manager.has_lion:
+            level_manager.reset()
+            lion = Lion()
+            level_manager.has_lion = True
 
     # Update logic
     run()

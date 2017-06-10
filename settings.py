@@ -1,25 +1,37 @@
 import pygame
 
 
-class LevelManager:
-    def __init__(self):
-        self.active = True
-
-#level_manager = LevelManager()
-
-
 class Counter:
-    def __init__(self, n_frames):
-        self.time = n_frames
+    def __init__(self, **kwargs):
+        self.time = kwargs.get("n_frames", 0)
         self.counter = self.time
+        self.timer = 0
 
     def countdown(self):
         self.counter -= 1
         if self.counter < 0:
             return True
 
+    def countup(self):
+        self.timer += 1
+
     def reset(self):
         self.counter = self.time
+        self.timer = 0
+
+
+class LevelManager:
+    def __init__(self):
+        self.active = True
+        self.has_lion = False
+        self.lion_timer = Counter()
+        self.lion_left = 0
+
+    def reset(self):
+        self.lion_timer.reset()
+
+level_manager = LevelManager()
+
 
 # game options/settings
 TITLE = "Hứng game"
@@ -50,6 +62,7 @@ def draw_text( screen, text, size, color, x, y): #For score and player's status
     text_rect.midtop = (x, y)
     screen.blit(text_surface, text_rect)
 
-def check_lose():
+
+def check_lose(player):
     if player.missed_edibles >= 10:
         print ("NOOB")
