@@ -24,11 +24,14 @@ class LevelManager:
     def __init__(self):
         self.active = True
         self.has_lion = False
-        self.lion_timer = Counter()
         self.lion_left = 0
+        self.bird_spawn = 0
+        self.fly_spawn = 0
+        self.fruit_spawn = 0
+        self.trap_spawn = 0
 
     def reset(self):
-        self.lion_timer.reset()
+        pass
 
 level_manager = LevelManager()
 

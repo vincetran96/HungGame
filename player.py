@@ -60,7 +60,7 @@ class Player:
 
         if something is not None and type(something) is Lion and self.state_mngr.state not in ["roll", "preroll"]\
             and something.state_mngr.state == "attack":
-            self.score -= 300
+            self.score -= 250
             something.sfx_mixer.mix_now("hit")
 
     def flip(self):

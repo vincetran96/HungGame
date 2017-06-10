@@ -24,9 +24,10 @@ class Trap:
         self.vel.x = random.choice ((-2, 0, 2))
         self.vel.y = 3
         self.ground_hit = 0
-        self.box_collider = BoxCollider(self.position.add(105, 72), 120, 37)
+        self.box_collider = BoxCollider(self.position.add(105, 72), self.renderer.width * 0.4, self.renderer.height * 0.3)
         self.root_counter = Counter(n_frames=240)
         self.begin_root = False
+        level_manager.trap_spawn = pygame.time.get_ticks()
         physics.add(self)
         game_manager.add(self)
 
@@ -34,6 +35,7 @@ class Trap:
         if self.active:
             self.vel.add_up(0, self.acc.y)
             self.position.add_up(self.vel.x, self.vel.y + 0.5 * self.acc.y)
+            self.box_collider.position.add_up (self.vel.x, self.vel.y + 0.5 * self.acc.y)
             self.flip()
         if self.begin_root:
             self.root_counter.countdown()

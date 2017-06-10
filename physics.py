@@ -32,7 +32,7 @@ class Physics:
     def check_hit_ground(self):
         for fruit in self.fruits:
             if fruit.position.y >= GROUND_y - fruit.renderer.height:
-                fruit.ground_hit +=1
+                fruit.ground_hit += 1
                 fruit.vel.y *= -0.9
                 fruit.vel.x *= 0.5
                 fruit.acc.y = GRAVITY * 0.022

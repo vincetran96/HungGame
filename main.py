@@ -58,24 +58,20 @@ while playing:
             playing = False
 
     input_manager.run(events)
-    i += 1
-    if i % 150 == 0:
+    now = pygame.time.get_ticks()
+
+    if now - level_manager.fly_spawn >= 1000:
         edible = Fly()
-        trap = Trap()
-    if i % 270 == 0:
+
+    if now - level_manager.bird_spawn >= 4500 and now - level_manager.fruit_spawn >= 4500:
         non_edible_bird = Bird()
         non_edible_fruit = Fruit()
 
-    if level_manager.lion_left == 0:
-        if i % 150 and not level_manager.has_lion:
-            level_manager.reset()
-            lion = Lion()
-            level_manager.has_lion = True
-    else:
-        if i % level_manager.lion_left and not level_manager.has_lion:
-            level_manager.reset()
-            lion = Lion()
-            level_manager.has_lion = True
+    if now - level_manager.trap_spawn >= 10000:
+        trap = Trap()
+
+    if now - level_manager.lion_left >= 3000 and not level_manager.has_lion:
+        lion = Lion()
 
     # Update logic
     run()
