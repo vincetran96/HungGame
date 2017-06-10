@@ -69,7 +69,7 @@ class StateRender:
 
         max_frames = len(self.image_dict[current_state]["noflip"])
 
-        # SLOW IT DOWN 10 game-frames, BUT THE countdown() method takes 2-frame delay
+        # SLOW IT DOWN 10 game-frames, BUT THE countdown() method takes 2-frame delay (from 20 to 10)
         self.counter.countdown()
         if self.counter.countdown():
             self.counter.reset()

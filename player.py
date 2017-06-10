@@ -27,6 +27,7 @@ class Player:
         self.box_collider = BoxCollider(self.position, self.renderer.width, 50)
         self.eat_counter = settings.Counter(n_frames=52)      # ABOUT 2-frames DELAY, SO FROM 29 TO 52......
         self.roll_counter = settings.Counter(n_frames=100)
+        self.hitted_counter = settings.Counter(n_frames=40)
         self.move_disabled = False
         self.score = 0
         self.missed_edibles = 0
@@ -35,6 +36,7 @@ class Player:
         self.check()
         self.move()
         self.eat()
+        self.hitted()
         self.key_cleared ()
         self.flip()
 
@@ -60,6 +62,8 @@ class Player:
 
         if something is not None and type(something) is Lion and self.state_mngr.state not in ["roll", "preroll"]\
             and something.state_mngr.state == "attack":
+            self.state_mngr.state = "hitted"
+            self.sfx_mixer.mix_now("hitted")
             self.score -= 250
             something.sfx_mixer.mix_now("hit")
 
@@ -77,7 +81,15 @@ class Player:
             # THERE ARE 3 EATING FRAMES, BUT EACH EATING FRAMES TAKES 10 GAME FRAMES TO BE RENDERED (SEE
             # staterender MODULE)
             if self.eat_counter.countdown ():
-                self.eat_counter.reset ()
+                self.eat_counter.reset()
+                self.state_mngr.state = "normal"
+
+    def hitted(self):
+        if self.state_mngr.state == "hitted":
+            self.hitted_counter.countdown()
+            if self.hitted_counter.countdown():
+                print ("DONE")
+                self.hitted_counter.reset()
                 self.state_mngr.state = "normal"
 
     def move(self):
@@ -136,7 +148,7 @@ class Player:
     # PART OF MOVE
     def key_cleared(self):
         if input_manager.all_key_cleared:
-            if self.state_mngr.state not in ["trap", "eat"]:
+            if self.state_mngr.state not in ["trap", "eat", "hitted"]:
                 self.state_mngr.state = self.state_mngr.states[0]
 
     # PART OF MOVE
