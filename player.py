@@ -25,9 +25,9 @@ class Player:
         self.position.x = 200
         self.position.y = GROUND_y - self.renderer.height
         self.box_collider = BoxCollider(self.position, self.renderer.width, 50)
-        self.eat_counter = settings.Counter(n_frames=52)      # ABOUT 2-frames DELAY, SO FROM 29 TO 52......
-        self.roll_counter = settings.Counter(n_frames=100)
-        self.hitted_counter = settings.Counter(n_frames=40)
+        self.eat_counter = settings.FrameClock(n_frames=52)      # ABOUT 2-frames DELAY, SO FROM 29 TO 52......
+        self.roll_counter = settings.FrameClock(n_frames=100)
+        self.hitted_counter = settings.FrameClock(n_frames=40)
         self.move_disabled = False
         self.score = 0
         self.missed_edibles = 0
@@ -57,7 +57,7 @@ class Player:
             self.move_disabled = True
             self.state_mngr.state = "trap"
             self.sfx_mixer.mix_now("trap")
-            self.move_counter = settings.Counter(n_frames=240)
+            self.move_counter = settings.FrameClock(n_frames=240)
             something.begin_root = True
 
         if something is not None and type(something) is Lion and self.state_mngr.state not in ["roll", "preroll"]\

@@ -1,11 +1,11 @@
 import pygame
 
 
-class Counter:
+class FrameClock:
     def __init__(self, **kwargs):
-        self.time = kwargs.get("n_frames", 0)
-        self.counter = self.time
-        self.timer = 0
+        self.frames = kwargs.get("n_frames", 0)
+        self.counter = self.frames
+        self.stopwatch = 0
 
     def countdown(self):
         self.counter -= 1
@@ -16,7 +16,7 @@ class Counter:
         self.timer += 1
 
     def reset(self):
-        self.counter = self.time
+        self.counter = self.frames
         self.timer = 0
 
 
@@ -30,7 +30,7 @@ class LevelManager:
         self.fruit_spawn = 0
         self.trap_spawn = 0
 
-    def reset(self):
+    def generate_obs(self):
         pass
 
 level_manager = LevelManager()

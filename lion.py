@@ -22,7 +22,7 @@ class Lion:
         self.sfx_mixer = SFXMixer("resources/lion/", self.state_mngr)
         self.constraints = None
         self.box_collider = BoxCollider (self.position.add(160, 20), self.renderer.width - 160, self.renderer.height - 20)
-        self.atk_counter = settings.Counter(n_frames=240)
+        self.atk_counter = settings.FrameClock(n_frames=240)
         physics.add(self)
         game_manager.add(self)
         level_manager.has_lion = True

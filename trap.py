@@ -25,7 +25,7 @@ class Trap:
         self.vel.y = 3
         self.ground_hit = 0
         self.box_collider = BoxCollider(self.position.add(105, 72), self.renderer.width * 0.4, self.renderer.height * 0.3)
-        self.root_counter = Counter(n_frames=240)
+        self.root_counter = FrameClock(n_frames=240)
         self.begin_root = False
         level_manager.trap_spawn = pygame.time.get_ticks()
         physics.add(self)
