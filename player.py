@@ -31,7 +31,7 @@ class Player:
         self.lion_hitted = False
         self.move_disabled = False
         self.score = 0
-        self.missed_edibles = 0
+        self.non_edible_eaten = 0
 
     def run(self):
         self.check()
@@ -45,7 +45,7 @@ class Player:
         something = physics.check_contact(self.box_collider)
         if something is not None and NonEdible in inspect.getmro(type(something)):
             something.active = False
-            self.score -= 10
+            self.score -= 50
 
         if something is not None and Edible in inspect.getmro(type(something)):
             self.state_mngr.state = "eat"
@@ -65,7 +65,7 @@ class Player:
             self.lion_hitted = True
             self.state_mngr.state = "hitted"
             self.sfx_mixer.mix_now("hitted")
-            self.score -= 250
+            self.score -= 500
             something.sfx_mixer.mix_now("hit")
 
     def flip(self):

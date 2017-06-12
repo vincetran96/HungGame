@@ -45,7 +45,7 @@ FONT_NAME = 'arial'
 GROUND_y = 530
 
 # Player properties
-PLAYER_ACC = 0.9
+PLAYER_ACC = 1.0
 PLAYER_FRICTION = -0.12
 GRAVITY = 10
 PLAYER_JUMP = 20

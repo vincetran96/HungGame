@@ -87,4 +87,10 @@ while playing:
     pygame.display.flip()
     clock.tick(FPS)
 
+    #Lose:
+    print  (player.non_edible_eaten)
+    print (player.score)
+    if  player.score <= - 500 :
+        playing = False
+
 pygame.quit()
