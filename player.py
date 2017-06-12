@@ -28,6 +28,7 @@ class Player:
         self.eat_counter = settings.FrameClock(n_frames=52)      # ABOUT 2-frames DELAY, SO FROM 29 TO 52......
         self.roll_counter = settings.FrameClock(n_frames=100)
         self.hitted_counter = settings.FrameClock(n_frames=40)
+        self.lion_hitted = False
         self.move_disabled = False
         self.score = 0
         self.missed_edibles = 0
@@ -53,15 +54,15 @@ class Player:
             self.score += 100
 
         if something is not None and type(something) is Trap and not self.move_disabled:
-            print ("Trap")
             self.move_disabled = True
             self.state_mngr.state = "trap"
             self.sfx_mixer.mix_now("trap")
-            self.move_counter = settings.FrameClock(n_frames=240)
+            self.move_counter = FrameClock(n_frames=240)
             something.begin_root = True
 
-        if something is not None and type(something) is Lion and self.state_mngr.state not in ["roll", "preroll"]\
-            and something.state_mngr.state == "attack":
+        if something is not None and type(something) is Lion and not self.lion_hitted\
+            and self.state_mngr.state not in ["roll", "preroll"] and something.state_mngr.state == "attack":
+            self.lion_hitted = True
             self.state_mngr.state = "hitted"
             self.sfx_mixer.mix_now("hitted")
             self.score -= 250
@@ -85,12 +86,12 @@ class Player:
                 self.state_mngr.state = "normal"
 
     def hitted(self):
-        if self.state_mngr.state == "hitted":
+        if self.lion_hitted:
             self.hitted_counter.countdown()
             if self.hitted_counter.countdown():
-                print ("DONE")
                 self.hitted_counter.reset()
                 self.state_mngr.state = "normal"
+                self.lion_hitted = False
 
     def move(self):
         if not self.move_disabled:
