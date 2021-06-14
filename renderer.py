@@ -81,4 +81,3 @@ class StateRender:
 # frames = self.image_dict[current_state]
 # image = frames[self.image_index]
 # egami = pygame.transform.flip(image, True, False)
-

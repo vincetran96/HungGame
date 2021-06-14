@@ -47,7 +47,6 @@ class StateSFXMixer:
             sound = self.sfx_dict[current_state]["sound"]
             pygame.mixer.Sound.play(sound)
 
-
 class EventSFX:
     def __init__(self, path):
         pass

@@ -37,12 +37,13 @@ level_manager = LevelManager()
 
 
 # game options/settings
-TITLE = "Hứng game"
+TITLE = "Pangolier Survival Game"
 WIDTH = 800
 HEIGHT = 600
 FPS = 60
 FONT_NAME = 'arial'
 GROUND_y = 530
+LOSING_SCORE = -20000
 
 # Player properties
 PLAYER_ACC = 1.0
