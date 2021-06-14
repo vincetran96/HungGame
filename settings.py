@@ -37,7 +37,7 @@ level_manager = LevelManager()
 
 
 # game options/settings
-TITLE = "Pangolier Survival Game"
+TITLE = "Pangolin Survival Game"
 WIDTH = 800
 HEIGHT = 600
 FPS = 60

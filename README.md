@@ -1,4 +1,4 @@
-# Pangolier Survival Game
+# Pangolin Survival Game
 
 ## Some screenshots
 ![screenshot 0](https://i.imgur.com/nidt1wJ.png)
@@ -6,7 +6,7 @@
 ![screenshot 2](https://i.imgur.com/pplZ7zA.png)
 ![screenshot 3](https://i.imgur.com/z3Y4ZFP.gif)
 ## About
-This is a small, barebone, and proof-of-concept game about a pangolier eating treats falling from the sky. The objective is to keep your score as high as possible. The game will automatically exit if your score is lower than -20000.
+This is a small, barebone, and proof-of-concept game about a pangolin eating treats falling from the sky. The game was inspired by an animal conservation initiative to protect pangolins. The objective is to keep your score as high as possible. The game will automatically exit if your score is lower than -20000.
 ## How to start the game
 Install the dependency:
 ```
